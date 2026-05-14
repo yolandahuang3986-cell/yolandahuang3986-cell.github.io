@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuanyuan (Yolanda) Huang — AI Strategy & Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #0F1117;
+  --ink-soft:  #3A3D4A;
+  --ink-mute:  #7A7E8E;
+  --paper:     #F7F5F0;
+  --paper-alt: #EDEAE3;
+  --accent:    #1A56A0;
+  --accent-lt: #D6E4F7;
+  --gold:      #B8860B;
+  --gold-lt:   #F5EDD3;
+  --green:     #1A6E48;
+  --green-lt:  #D4EDE1;
+  --border:    rgba(15,17,23,0.10);
+  --r:         6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 60px;
+  background: rgba(247,245,240,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-size: 13px; font-weight: 400; color: var(--ink-soft);
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ── HERO ── */
+header {
+  padding: 140px 48px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 60px;
+  align-items: end;
+}
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-desc {
+  font-size: 16px; font-weight: 300;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin-bottom: 36px;
+  line-height: 1.75;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+.tag {
+  font-size: 12px; font-weight: 500;
+  padding: 5px 13px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+  background: white;
+  letter-spacing: 0.02em;
+}
+.hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+  padding: 10px 20px; border-radius: var(--r);
+  text-decoration: none; transition: all .2s;
+  cursor: pointer; border: none;
+}
+.btn-primary { background: var(--ink); color: white; }
+.btn-primary:hover { background: var(--accent); }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.hero-card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  color: var(--ink-mute);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 18px;
+}
+.stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+.stat { padding: 14px; background: var(--paper); border-radius: var(--r); }
+.stat-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px; color: var(--accent);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label { font-size: 11px; color: var(--ink-mute); line-height: 1.4; }
+.hero-card-footer {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--ink-mute); line-height: 1.6;
+}
+.hero-card-footer strong { color: var(--ink-soft); font-weight: 500; }
+
+/* ── SECTION SHARED ── */
+section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  color: var(--accent); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3.5vw, 38px);
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--ink); margin-bottom: 48px;
+}
+.divider {
+  border: none; border-top: 1px solid var(--border);
+  max-width: 1100px; margin: 0 auto;
+}
+
+/* ── PROJECTS ── */
+.projects-grid { display: grid; gap: 20px; }
+
+.project-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+  transition: box-shadow .2s, transform .2s;
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+}
+.project-card.ai::before    { background: var(--accent); }
+.project-card.kyc::before   { background: var(--gold); }
+.project-card.ops::before   { background: var(--green); }
+.project-card.ec::before    { background: #8B4513; }
+
+.project-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+  transform: translateY(-2px);
+}
+
+.proj-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.proj-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  padding: 3px 9px; border-radius: 4px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.badge-ai   { background: var(--accent-lt); color: var(--accent); }
+.badge-kyc  { background: var(--gold-lt);   color: var(--gold); }
+.badge-ops  { background: var(--green-lt);  color: var(--green); }
+.badge-ec   { background: #F5EBE0; color: #8B4513; }
+.badge-wip  { background: var(--paper-alt); color: var(--ink-mute); }
+
+.proj-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.proj-desc {
+  font-size: 14px; color: var(--ink-soft);
+  line-height: 1.7; margin-bottom: 18px;
+  max-width: 620px;
+}
+.proj-highlights {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 18px;
+}
+.highlight {
+  font-size: 12px; font-weight: 500;
+  padding: 5px 12px;
+  background: var(--paper); border-radius: 100px;
+  color: var(--ink-soft);
+  border: 1px solid var(--border);
+}
+.highlight.result {
+  background: var(--green-lt);
+  color: var(--green); border-color: transparent;
+}
+
+.proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack-item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink-mute);
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--paper);
+}
+
+.proj-aside { text-align: right; min-width: 120px; }
+.proj-status {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
+  padding: 4px 10px; border-radius: 100px; display: inline-block;
+  margin-bottom: 16px;
+}
+.status-live { background: var(--green-lt); color: var(--green); }
+.status-wip  { background: var(--gold-lt);  color: var(--gold); }
+
+.proj-metrics { display: flex; flex-direction: column; gap: 10px; }
+.metric {
+  background: var(--paper); border-radius: var(--r);
+  padding: 10px 14px; text-align: right;
+}
+.metric-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; color: var(--accent);
+  line-height: 1;
+}
+.metric-label { font-size: 10px; color: var(--ink-mute); margin-top: 2px; }
+
+/* ── EXPERIENCE ── */
+.exp-list { display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+}
+.exp-item:last-child { border-bottom: none; }
+.exp-period {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink-mute);
+  padding-top: 4px;
+  line-height: 1.8;
+}
+.exp-company {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; color: var(--ink);
+  margin-bottom: 2px;
+}
+.exp-role {
+  font-size: 13px; font-weight: 500; color: var(--ink-mute);
+  margin-bottom: 14px; letter-spacing: 0.02em;
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.exp-bullets li {
+  font-size: 13.5px; color: var(--ink-soft);
+  padding-left: 16px; position: relative; line-height: 1.6;
+}
+.exp-bullets li::before {
+  content: '—';
+  position: absolute; left: 0;
+  color: var(--accent); font-weight: 500;
+}
+.exp-bullets li strong { color: var(--ink); font-weight: 500; }
+
+/* ── SKILLS ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.skill-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+.skill-card-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+.skill-card-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--ink); margin-bottom: 10px;
+}
+.skill-items { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-pill {
+  font-size: 12px; padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  border: 1px solid var(--border);
+}
+
+/* ── CONTACT ── */
+.contact-box {
+  background: var(--ink);
+  border-radius: 16px;
+  padding: 56px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+}
+.contact-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px; color: white;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.contact-desc { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+.contact-links { display: flex; flex-direction: column; gap: 12px; }
+.contact-link {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--r);
+  transition: all .2s; white-space: nowrap;
+}
+.contact-link:hover { background: rgba(255,255,255,0.08); color: white; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 32px 48px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink-mute);
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.06em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp .6s ease both; }
+.fade-up-1 { animation-delay: .1s; }
+.fade-up-2 { animation-delay: .2s; }
+.fade-up-3 { animation-delay: .3s; }
+.fade-up-4 { animation-delay: .4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  nav { padding: 0 24px; }
+  nav .nav-links { display: none; }
+  header { grid-template-columns: 1fr; padding: 120px 24px 60px; }
+  .hero-card { display: none; }
+  section { padding: 60px 24px; }
+  .project-card { grid-template-columns: 1fr; }
+  .proj-aside { text-align: left; }
+  .proj-metrics { flex-direction: row; }
+  .exp-item { grid-template-columns: 1fr; gap: 8px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .contact-box { grid-template-columns: 1fr; padding: 36px 28px; }
+  footer { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Yolanda Huang</div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div>
+    <div class="hero-eyebrow fade-up">NTU MCAAI · Singapore</div>
+    <h1 class="hero-name fade-up fade-up-1">
+      Yuanyuan<br><em>(Yolanda)</em><br>Huang
+    </h1>
+    <p class="hero-desc fade-up fade-up-2">
+      AI Operations & Solutions specialist bridging business strategy and AI deployment — with 8+ years delivering intelligent systems in FinTech and consulting across China and Southeast Asia.
+    </p>
+    <div class="hero-tags fade-up fade-up-3">
+      <span class="tag">AI Product</span>
+      <span class="tag">AI Solutions</span>
+      <span class="tag">FinTech</span>
+      <span class="tag">Agentic AI</span>
+      <span class="tag">Operations Strategy</span>
+    </div>
+    <div class="hero-links fade-up fade-up-4">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="mailto:yuanyuan010@e.ntu.edu.sg" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-card fade-up fade-up-3">
+    <div class="hero-card-label">At a Glance</div>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-val">8+</div>
+        <div class="stat-label">Years in AI & Operations</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">20+</div>
+        <div class="stat-label">Cross-industry Projects</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">1M+</div>
+        <div class="stat-label">Users Impacted</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">3</div>
+        <div class="stat-label">AI Demos Built</div>
+      </div>
+    </div>
+    <div class="hero-card-footer">
+      <strong>Currently:</strong> MCAAI @ NTU Singapore<br>
+      <strong>Open to:</strong> AI PM · AI Solutions · Ops Strategy
+    </div>
+  </div>
+</header>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Selected Work</div>
+  <div class="section-title">Projects & Case Studies</div>
+
+  <div class="projects-grid">
+
+    <!-- KYC -->
+    <div class="project-card kyc">
+      <div>
+        <div class="proj-meta">
+          <span class="proj-badge badge-kyc">FinTech · Compliance</span>
+          <span class="proj-badge badge-ai">Agentic AI</span>
+          <span class="proj-badge badge-ai">NTU Coursework</span>
+        </div>
+        <div class="proj-title">KYC Compliance Agentic Pipeline</div>
+        <p class="proj-desc">
+          Designed and built a production-grade 3-agent identity verification system for financial customer onboarding. The pipeline automates compliance decisions across PASS / REVIEW / REJECT with a full explainable audit trail — validated against global regulatory frameworks (CN, SG, EU, US).
+        </p>
+        <div class="proj-highlights">
+          <span class="highlight">Extraction Agent</span>
+          <span class="highlight">MRZ Integrity Check</span>
+          <span class="highlight">Fuzzy Name Matching</span>
+          <span class="highlight">Adverse Media Screening</span>
+          <span class="highlight">Weighted Risk Scoring</span>
+          <span class="highlight result">3 Scenarios Validated</span>
+          <span class="highlight result">HITL Decision Gate</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-item">Python</span>
+          <span class="stack-item">LangChain</span>
+          <span class="stack-item">Streamlit</span>
+          <span class="stack-item">MRZ Parser</span>
+          <span class="stack-item">Fuzzy Matching</span>
+        </div>
+      </div>
+      <div class="proj-aside">
+        <div class="proj-status status-live">Live Demo</div>
+        <div class="proj-metrics">
+          <div class="metric">
+            <div class="metric-val">3</div>
+            <div class="metric-label">Agent pipeline</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">4+</div>
+            <div class="metric-label">Jurisdictions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LangGraph -->
+    <div class="project-card ai">
+      <div>
+        <div class="proj-meta">
+          <span class="proj-badge badge-ai">Multi-Agent</span>
+          <span class="proj-badge badge-ec">E-commerce</span>
+          <span class="proj-badge badge-wip">In Progress</span>
+        </div>
+        <div class="proj-title">E-commerce CS Multi-Agent System</div>
+        <p class="proj-desc">
+          Built a LangGraph-powered multi-agent customer service system for e-commerce. An intent-classification Orchestrator dynamically routes incoming queries to four specialist sub-agents — order, logistics, payment, and complaint — covering the full customer service workflow.
+        </p>
+        <div class="proj-highlights">
+          <span class="highlight">Intent-driven Orchestrator</span>
+          <span class="highlight">4 Sub-agents</span>
+          <span class="highlight">Conditional Edge Routing</span>
+          <span class="highlight result">LLM Intent Classification</span>
+          <span class="highlight result">Full CS Workflow Coverage</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-item">LangGraph</span>
+          <span class="stack-item">LangChain</span>
+          <span class="stack-item">Python</span>
+          <span class="stack-item">LLM API</span>
+        </div>
+      </div>
+      <div class="proj-aside">
+        <div class="proj-status status-wip">Demo Soon</div>
+        <div class="proj-metrics">
+          <div class="metric">
+            <div class="metric-val">4</div>
+            <div class="metric-label">Sub-agents</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">1</div>
+            <div class="metric-label">Orchestrator</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alipay Ops -->
+    <div class="project-card ops">
+      <div>
+        <div class="proj-meta">
+          <span class="proj-badge badge-ops">AI Operations</span>
+          <span class="proj-badge badge-ops">FinTech · Ant Group</span>
+        </div>
+        <div class="proj-title">Intelligent QC & Flow Operations System</div>
+        <p class="proj-desc">
+          Led AI-driven overhaul of customer service quality control and escalation workflows at Ant Group (Alipay) — serving 30K+ monthly cases. Replaced manual random sampling with intent-driven intelligent full-inspection; built a real-time customer downgrade strategy system from zero.
+        </p>
+        <div class="proj-highlights">
+          <span class="highlight">Prompt-engineered QC Pipeline</span>
+          <span class="highlight">Atomic-level Capability Decomposition</span>
+          <span class="highlight">Real-time Risk Stratification</span>
+          <span class="highlight result">↓ 90pt Abnormal Interference</span>
+          <span class="highlight result">CSAT +2%</span>
+          <span class="highlight result">50%+ Cost Reduction</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-item">NLP Rules</span>
+          <span class="stack-item">Prompt Engineering</span>
+          <span class="stack-item">SQL</span>
+          <span class="stack-item">Intent Detection</span>
+        </div>
+      </div>
+      <div class="proj-aside">
+        <div class="proj-status status-live">Delivered</div>
+        <div class="proj-metrics">
+          <div class="metric">
+            <div class="metric-val">90pt</div>
+            <div class="metric-label">Risk reduction</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">50%+</div>
+            <div class="metric-label">Cost saved</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ping An -->
+    <div class="project-card ec">
+      <div>
+        <div class="proj-meta">
+          <span class="proj-badge badge-ec">Product · InsurTech</span>
+          <span class="proj-badge badge-ops">Ping An Technology</span>
+        </div>
+        <div class="proj-title">Agent Recruitment & Digital Branch Platform</div>
+        <p class="proj-desc">
+          Owned the demand-side of Ping An Life's agent-growth planning tool — led requirements prioritisation, feature scoping, and 2-week agile sprints. Independently designed wireframe prototypes for the digital branch management dashboards covering headcount, KPI alerts, and activity tracking.
+        </p>
+        <div class="proj-highlights">
+          <span class="highlight">Requirements Ownership</span>
+          <span class="highlight">Dashboard Wireframes</span>
+          <span class="highlight">2-week Agile Sprints</span>
+          <span class="highlight result">1M+ Agents Reached</span>
+          <span class="highlight result">30%+ Adoption Rate</span>
+          <span class="highlight result">Pilot KPI +30%</span>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-item">Product Design</span>
+          <span class="stack-item">SQL</span>
+          <span class="stack-item">KPI Dashboards</span>
+          <span class="stack-item">Agile</span>
+        </div>
+      </div>
+      <div class="proj-aside">
+        <div class="proj-status status-live">Delivered</div>
+        <div class="proj-metrics">
+          <div class="metric">
+            <div class="metric-val">1M+</div>
+            <div class="metric-label">Agents</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">30%+</div>
+            <div class="metric-label">Adoption</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">Career</div>
+  <div class="section-title">Work Experience</div>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-period">2021.11 — 2024.09<br>Hangzhou, China</div>
+      <div>
+        <div class="exp-company">Ant Group (Alipay)</div>
+        <div class="exp-role">Process & Quality Operations Specialist · AI Force Division</div>
+        <ul class="exp-bullets">
+          <li><strong>Built from zero</strong> a real-time customer downgrade strategy system — defined anomalous-user classification from behavioural signals, designed multi-tier service-permission routing rules; reduced abnormal-interference volume by <strong>90 percentage points</strong>.</li>
+          <li><strong>Defined QC business requirements</strong> for extreme customer-facing scenarios — decomposed inspection standards to atomic dimensions, translated into structured Prompt-engineered inspection pipeline enabling real-time coaching, alerts, and failsafe.</li>
+          <li><strong>Replaced COPC random-sampling</strong> with intent-driven sampling; upgraded QC from call-level to event-level granularity — CSAT +2%, service-risk spillover significantly reduced.</li>
+          <li>Built 15-person outsourced QC team; restructured 30-person in-house team — maintained cross-LOB quality while achieving <strong>50%+ headcount cost reduction</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">2020.04 — 2021.11<br>Shanghai / Shenzhen</div>
+      <div>
+        <div class="exp-company">Ping An Technology</div>
+        <div class="exp-role">Associate Director, Process & Operations Consulting</div>
+        <ul class="exp-bullets">
+          <li><strong>Owned demand-side</strong> of Ping An Life agent-growth planning tool — led requirements prioritisation, feature scoping across 2-week agile sprints; scaled to <strong>1M+ agents, 30%+ active adoption</strong> within 1 year.</li>
+          <li><strong>Independently designed wireframe prototypes</strong> for digital branch management dashboards (headcount trends, KPI alerts, activity tracking); led 4-person intern team through UAT and rollout — pilot KPI outperformed average by <strong>30%</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">2016.07 — 2019.11<br>Guangzhou, China</div>
+      <div>
+        <div class="exp-company">AMT Consulting</div>
+        <div class="exp-role">Management Consultant / Project Manager</div>
+        <ul class="exp-bullets">
+          <li>Delivered <strong>20+ process optimisation</strong> and digital transformation projects across manufacturing, energy, and consumer goods.</li>
+          <li>Led CGN Research Institute IPD project — benchmarked against Huawei IPD; mapped 8 R&D specialisations to drive standardisation.</li>
+          <li>Repositioned Kweichow Moutai quality department; operationalised quality planning, non-conformance control, and incident management. Supported ISO 9000 certification.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">Capabilities</div>
+  <div class="section-title">Skills & Tools</div>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-card-icon" style="background:#D6E4F7;">🤖</div>
+      <div class="skill-card-title">Agentic AI & LLMs</div>
+      <div class="skill-items">
+        <span class="skill-pill">LangGraph</span>
+        <span class="skill-pill">LangChain</span>
+        <span class="skill-pill">Prompt Engineering</span>
+        <span class="skill-pill">Multi-agent Design</span>
+        <span class="skill-pill">RAG</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-icon" style="background:#D4EDE1;">📊</div>
+      <div class="skill-card-title">Data & Analytics</div>
+      <div class="skill-items">
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">Python (pandas)</span>
+        <span class="skill-pill">scikit-learn</span>
+        <span class="skill-pill">KPI Dashboard Design</span>
+        <span class="skill-pill">Statistical Analysis</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-icon" style="background:#F5EDD3;">🎯</div>
+      <div class="skill-card-title">Product & Strategy</div>
+      <div class="skill-items">
+        <span class="skill-pill">Requirements Prioritisation</span>
+        <span class="skill-pill">Wireframing</span>
+        <span class="skill-pill">Agile / Sprint</span>
+        <span class="skill-pill">UAT</span>
+        <span class="skill-pill">Roadmap Planning</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-icon" style="background:#FCEBEB;">⚙️</div>
+      <div class="skill-card-title">AI Systems Design</div>
+      <div class="skill-items">
+        <span class="skill-pill">NLP Rule Systems</span>
+        <span class="skill-pill">Intent Detection</span>
+        <span class="skill-pill">Risk Stratification</span>
+        <span class="skill-pill">Decision Engine Design</span>
+        <span class="skill-pill">HITL Workflows</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-icon" style="background:#EDE4F5;">🌏</div>
+      <div class="skill-card-title">Domain Expertise</div>
+      <div class="skill-items">
+        <span class="skill-pill">FinTech / Payments</span>
+        <span class="skill-pill">KYC / AML</span>
+        <span class="skill-pill">InsurTech</span>
+        <span class="skill-pill">E-commerce Ops</span>
+        <span class="skill-pill">Management Consulting</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-icon" style="background:#E4F0E4;">🎓</div>
+      <div class="skill-card-title">Education</div>
+      <div class="skill-items">
+        <span class="skill-pill">NTU MCAAI (2025–26)</span>
+        <span class="skill-pill">ACCA 14/14</span>
+        <span class="skill-pill">IELTS 7.0</span>
+        <span class="skill-pill">Mandarin (Native)</span>
+        <span class="skill-pill">English (Fluent)</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <div>
+      <div class="contact-title">Let's work together</div>
+      <p class="contact-desc">
+        Open to AI Product Manager, AI Solutions, and Operations Strategy roles in Singapore and Hong Kong.<br>
+        NTU MCAAI graduating October 2026.
+      </p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:yuanyuan010@e.ntu.edu.sg" class="contact-link">
+        ✉ yuanyuan010@e.ntu.edu.sg
+      </a>
+      <a href="tel:+6589827121" class="contact-link">
+        📞 +65 8982 7121
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="contact-link">
+        in LinkedIn Profile →
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Yuanyuan (Yolanda) Huang &nbsp;·&nbsp; Built for humans, powered by curiosity
+</footer>
+
+</body>
+</html>
