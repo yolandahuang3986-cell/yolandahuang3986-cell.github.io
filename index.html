@@ -19,6 +19,8 @@
   --gold-lt:   #F5EDD3;
   --green:     #1A6E48;
   --green-lt:  #D4EDE1;
+  --data:      #6B4FA0;
+  --data-lt:   #E8E1F5;
   --border:    rgba(15,17,23,0.10);
   --r:         6px;
 }
@@ -52,6 +54,7 @@ nav {
   color: var(--ink);
   letter-spacing: 0.01em;
 }
+.nav-right { display: flex; align-items: center; gap: 28px; }
 .nav-links { display: flex; gap: 32px; }
 .nav-links a {
   font-size: 13px; font-weight: 400; color: var(--ink-soft);
@@ -59,6 +62,20 @@ nav {
   transition: color .2s;
 }
 .nav-links a:hover { color: var(--accent); }
+
+.lang-toggle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 500;
+  color: var(--ink-soft);
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: all .2s;
+}
+.lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ── HERO ── */
 header {
@@ -167,6 +184,19 @@ section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
 }
 
 /* ── PROJECTS ── */
+.proj-group { margin-bottom: 44px; }
+.proj-group:last-child { margin-bottom: 0; }
+.proj-group-title {
+  display: flex; align-items: baseline; gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 500;
+  color: var(--ink-mute);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.proj-group-title .cn { color: var(--ink); font-size: 15px; letter-spacing: 0.02em; text-transform: none; font-family: 'DM Sans', sans-serif; font-weight: 600; }
 .projects-grid { display: grid; gap: 20px; }
 
 .project-card {
@@ -191,6 +221,7 @@ section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
 .project-card.kyc::before   { background: var(--gold); }
 .project-card.ops::before   { background: var(--green); }
 .project-card.ec::before    { background: #8B4513; }
+.project-card.data::before  { background: var(--data); }
 
 .project-card:hover {
   box-shadow: 0 8px 32px rgba(0,0,0,0.09);
@@ -208,6 +239,7 @@ section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
 .badge-kyc  { background: var(--gold-lt);   color: var(--gold); }
 .badge-ops  { background: var(--green-lt);  color: var(--green); }
 .badge-ec   { background: #F5EBE0; color: #8B4513; }
+.badge-data { background: var(--data-lt); color: var(--data); }
 .badge-wip  { background: var(--paper-alt); color: var(--ink-mute); }
 
 .proj-title {
@@ -255,6 +287,21 @@ section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
 }
 .status-live { background: var(--green-lt); color: var(--green); }
 .status-wip  { background: var(--gold-lt);  color: var(--gold); }
+
+.case-diagram-figure {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin: 0;
+}
+.case-diagram { width: 100%; height: auto; display: block; }
+.diagram-caption {
+  font-size: 12px; color: var(--ink-mute);
+  line-height: 1.7; margin-top: 18px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
 
 .proj-metrics { display: flex; flex-direction: column; gap: 10px; }
 .metric {
@@ -408,59 +455,62 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Yolanda Huang</div>
-  <div class="nav-links">
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-logo" data-i18n="nav-logo">Yolanda Huang</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#projects" data-i18n="nav-projects">Projects</a>
+      <a href="#experience" data-i18n="nav-experience">Experience</a>
+      <a href="#skills" data-i18n="nav-skills">Skills</a>
+      <a href="#contact" data-i18n="nav-contact">Contact</a>
+    </div>
+    <button class="lang-toggle" id="lang-toggle" type="button">中文</button>
   </div>
 </nav>
 
 <!-- HERO -->
 <header>
   <div>
-    <div class="hero-eyebrow fade-up">NTU MCAAI · Singapore</div>
+    <div class="hero-eyebrow fade-up" data-i18n="hero-eyebrow">NTU MCAAI · Singapore</div>
     <h1 class="hero-name fade-up fade-up-1">
       Yuanyuan<br><em>(Yolanda)</em><br>Huang
     </h1>
-    <p class="hero-desc fade-up fade-up-2">
+    <p class="hero-desc fade-up fade-up-2" data-i18n="hero-desc">
       AI Operations & Solutions specialist bridging business strategy and AI deployment — with 8+ years delivering intelligent systems in FinTech and consulting across China and Southeast Asia.
     </p>
     <div class="hero-tags fade-up fade-up-3">
-      <span class="tag">AI Product</span>
-      <span class="tag">AI Solutions</span>
-      <span class="tag">FinTech</span>
-      <span class="tag">Agentic AI</span>
-      <span class="tag">Operations Strategy</span>
+      <span class="tag" data-i18n="tag-1">AI Product</span>
+      <span class="tag" data-i18n="tag-2">AI Solutions</span>
+      <span class="tag" data-i18n="tag-3">FinTech</span>
+      <span class="tag" data-i18n="tag-4">Agentic AI</span>
+      <span class="tag" data-i18n="tag-5">Operations Strategy</span>
     </div>
     <div class="hero-links fade-up fade-up-4">
-      <a href="#projects" class="btn btn-primary">View Projects →</a>
-      <a href="mailto:yuanyuan010@e.ntu.edu.sg" class="btn btn-outline">Get in Touch</a>
+      <a href="#projects" class="btn btn-primary" data-i18n="btn-projects">View Projects →</a>
+      <a href="mailto:yuanyuan010@e.ntu.edu.sg" class="btn btn-outline" data-i18n="btn-contact">Get in Touch</a>
     </div>
   </div>
 
   <div class="hero-card fade-up fade-up-3">
-    <div class="hero-card-label">At a Glance</div>
+    <div class="hero-card-label" data-i18n="hero-card-label">At a Glance</div>
     <div class="stat-row">
       <div class="stat">
         <div class="stat-val">8+</div>
-        <div class="stat-label">Years in AI & Operations</div>
+        <div class="stat-label" data-i18n="stat-1">Years in AI & Operations</div>
       </div>
       <div class="stat">
         <div class="stat-val">20+</div>
-        <div class="stat-label">Cross-industry Projects</div>
+        <div class="stat-label" data-i18n="stat-2">Cross-industry Projects</div>
       </div>
       <div class="stat">
         <div class="stat-val">1M+</div>
-        <div class="stat-label">Users Impacted</div>
+        <div class="stat-label" data-i18n="stat-3">Users Impacted</div>
       </div>
       <div class="stat">
         <div class="stat-val">3</div>
-        <div class="stat-label">AI Demos Built</div>
+        <div class="stat-label" data-i18n="stat-4">AI Demos Built</div>
       </div>
     </div>
-    <div class="hero-card-footer">
+    <div class="hero-card-footer" data-i18n-html="hero-card-footer">
       <strong>Currently:</strong> MCAAI @ NTU Singapore<br>
       <strong>Open to:</strong> AI PM · AI Solutions · Ops Strategy
     </div>
@@ -471,224 +521,430 @@ footer {
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-eyebrow">Selected Work</div>
-  <div class="section-title">Projects & Case Studies</div>
+  <div class="section-eyebrow" data-i18n="projects-eyebrow">Selected Work</div>
+  <div class="section-title" data-i18n="projects-title">Projects & Case Studies</div>
 
-  <div class="projects-grid">
+  <!-- ═══ 运营 · GROWTH & PROCESS OPERATIONS ═══ -->
+  <div class="proj-group">
+    <div class="proj-group-title"><span class="cn">运营</span><span>Growth & Process Operations</span></div>
+    <div class="projects-grid">
 
-    <!-- KYC -->
-    <div class="project-card kyc">
-      <div>
-        <div class="proj-meta">
-          <span class="proj-badge badge-kyc">FinTech · Compliance</span>
-          <span class="proj-badge badge-ai">Agentic AI</span>
-          <span class="proj-badge badge-ai">NTU Coursework</span>
-        </div>
-        <div class="proj-title">KYC Compliance Agentic Pipeline</div>
-        <p class="proj-desc">
-          Designed and built a production-grade 3-agent identity verification system for financial customer onboarding. The pipeline automates compliance decisions across PASS / REVIEW / REJECT with a full explainable audit trail — validated against global regulatory frameworks (CN, SG, EU, US).
-        </p>
-        <div class="proj-highlights">
-          <span class="highlight">Extraction Agent</span>
-          <span class="highlight">MRZ Integrity Check</span>
-          <span class="highlight">Fuzzy Name Matching</span>
-          <span class="highlight">Adverse Media Screening</span>
-          <span class="highlight">Weighted Risk Scoring</span>
-          <span class="highlight result">3 Scenarios Validated</span>
-          <span class="highlight result">HITL Decision Gate</span>
-        </div>
-        <div class="proj-stack">
-          <span class="stack-item">Python</span>
-          <span class="stack-item">LangChain</span>
-          <span class="stack-item">Streamlit</span>
-          <span class="stack-item">MRZ Parser</span>
-          <span class="stack-item">Fuzzy Matching</span>
-        </div>
-      </div>
-      <div class="proj-aside">
-        <div class="proj-status status-live">Live Demo</div>
-        <div class="proj-metrics">
-          <div class="metric">
-            <div class="metric-val">3</div>
-            <div class="metric-label">Agent pipeline</div>
+      <!-- Alipay Ops -->
+      <div class="project-card ops">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-badge badge-ops" data-i18n="ops1-badge1">AI Operations</span>
+            <span class="proj-badge badge-ops" data-i18n="ops1-badge2">FinTech · Ant Group</span>
           </div>
-          <div class="metric">
-            <div class="metric-val">4+</div>
-            <div class="metric-label">Jurisdictions</div>
+          <div class="proj-title" data-i18n="ops1-title">Intelligent QC & Flow Operations System</div>
+          <p class="proj-desc" data-i18n="ops1-desc">
+            Led AI-driven overhaul of customer service quality control and escalation workflows at Ant Group (Alipay) — serving 30K+ monthly cases. Replaced manual random sampling with intent-driven intelligent full-inspection; built a real-time customer downgrade strategy system from zero.
+          </p>
+          <div class="proj-highlights">
+            <span class="highlight" data-i18n="ops1-h1">Prompt-engineered QC Pipeline</span>
+            <span class="highlight" data-i18n="ops1-h2">Atomic-level Capability Decomposition</span>
+            <span class="highlight" data-i18n="ops1-h3">Real-time Risk Stratification</span>
+            <span class="highlight result" data-i18n="ops1-h4">↓ 90pt Abnormal Interference</span>
+            <span class="highlight result" data-i18n="ops1-h5">CSAT +2%</span>
+            <span class="highlight result" data-i18n="ops1-h6">50%+ Cost Reduction</span>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-item">NLP Rules</span>
+            <span class="stack-item">Prompt Engineering</span>
+            <span class="stack-item">SQL</span>
+            <span class="stack-item">Intent Detection</span>
           </div>
         </div>
+        <div class="proj-aside">
+          <div class="proj-status status-live" data-i18n="ops1-status">Delivered</div>
+          <div class="proj-metrics">
+            <div class="metric">
+              <div class="metric-val">90pt</div>
+              <div class="metric-label" data-i18n="ops1-m1">Risk reduction</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">50%+</div>
+              <div class="metric-label" data-i18n="ops1-m2">Cost saved</div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Ping An -->
+      <div class="project-card ec">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-badge badge-ec" data-i18n="ops2-badge1">Product · InsurTech</span>
+            <span class="proj-badge badge-ops" data-i18n="ops2-badge2">Ping An Technology</span>
+          </div>
+          <div class="proj-title" data-i18n="ops2-title">Agent Recruitment & Digital Branch Platform</div>
+          <p class="proj-desc" data-i18n="ops2-desc">
+            Owned the demand-side of Ping An Life's agent-growth planning tool — led requirements prioritisation, feature scoping, and 2-week agile sprints. Independently designed wireframe prototypes for the digital branch management dashboards covering headcount, KPI alerts, and activity tracking.
+          </p>
+          <div class="proj-highlights">
+            <span class="highlight" data-i18n="ops2-h1">Requirements Ownership</span>
+            <span class="highlight" data-i18n="ops2-h2">Dashboard Wireframes</span>
+            <span class="highlight" data-i18n="ops2-h3">2-week Agile Sprints</span>
+            <span class="highlight result" data-i18n="ops2-h4">1M+ Agents Reached</span>
+            <span class="highlight result" data-i18n="ops2-h5">30%+ Adoption Rate</span>
+            <span class="highlight result" data-i18n="ops2-h6">Pilot KPI +30%</span>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-item">Product Design</span>
+            <span class="stack-item">SQL</span>
+            <span class="stack-item">KPI Dashboards</span>
+            <span class="stack-item">Agile</span>
+          </div>
+        </div>
+        <div class="proj-aside">
+          <div class="proj-status status-live" data-i18n="ops2-status">Delivered</div>
+          <div class="proj-metrics">
+            <div class="metric">
+              <div class="metric-val">1M+</div>
+              <div class="metric-label" data-i18n="ops2-m1">Agents</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">30%+</div>
+              <div class="metric-label" data-i18n="ops2-m2">Adoption</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-
-    <!-- LangGraph -->
-    <div class="project-card ai">
-      <div>
-        <div class="proj-meta">
-          <span class="proj-badge badge-ai">Multi-Agent</span>
-          <span class="proj-badge badge-ec">E-commerce</span>
-          <span class="proj-badge badge-wip">In Progress</span>
-        </div>
-        <div class="proj-title">E-commerce CS Multi-Agent System</div>
-        <p class="proj-desc">
-          Built a LangGraph-powered multi-agent customer service system for e-commerce. An intent-classification Orchestrator dynamically routes incoming queries to four specialist sub-agents — order, logistics, payment, and complaint — covering the full customer service workflow.
-        </p>
-        <div class="proj-highlights">
-          <span class="highlight">Intent-driven Orchestrator</span>
-          <span class="highlight">4 Sub-agents</span>
-          <span class="highlight">Conditional Edge Routing</span>
-          <span class="highlight result">LLM Intent Classification</span>
-          <span class="highlight result">Full CS Workflow Coverage</span>
-        </div>
-        <div class="proj-stack">
-          <span class="stack-item">LangGraph</span>
-          <span class="stack-item">LangChain</span>
-          <span class="stack-item">Python</span>
-          <span class="stack-item">LLM API</span>
-        </div>
-      </div>
-      <div class="proj-aside">
-        <div class="proj-status status-wip">Demo Soon</div>
-        <div class="proj-metrics">
-          <div class="metric">
-            <div class="metric-val">4</div>
-            <div class="metric-label">Sub-agents</div>
-          </div>
-          <div class="metric">
-            <div class="metric-val">1</div>
-            <div class="metric-label">Orchestrator</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Alipay Ops -->
-    <div class="project-card ops">
-      <div>
-        <div class="proj-meta">
-          <span class="proj-badge badge-ops">AI Operations</span>
-          <span class="proj-badge badge-ops">FinTech · Ant Group</span>
-        </div>
-        <div class="proj-title">Intelligent QC & Flow Operations System</div>
-        <p class="proj-desc">
-          Led AI-driven overhaul of customer service quality control and escalation workflows at Ant Group (Alipay) — serving 30K+ monthly cases. Replaced manual random sampling with intent-driven intelligent full-inspection; built a real-time customer downgrade strategy system from zero.
-        </p>
-        <div class="proj-highlights">
-          <span class="highlight">Prompt-engineered QC Pipeline</span>
-          <span class="highlight">Atomic-level Capability Decomposition</span>
-          <span class="highlight">Real-time Risk Stratification</span>
-          <span class="highlight result">↓ 90pt Abnormal Interference</span>
-          <span class="highlight result">CSAT +2%</span>
-          <span class="highlight result">50%+ Cost Reduction</span>
-        </div>
-        <div class="proj-stack">
-          <span class="stack-item">NLP Rules</span>
-          <span class="stack-item">Prompt Engineering</span>
-          <span class="stack-item">SQL</span>
-          <span class="stack-item">Intent Detection</span>
-        </div>
-      </div>
-      <div class="proj-aside">
-        <div class="proj-status status-live">Delivered</div>
-        <div class="proj-metrics">
-          <div class="metric">
-            <div class="metric-val">90pt</div>
-            <div class="metric-label">Risk reduction</div>
-          </div>
-          <div class="metric">
-            <div class="metric-val">50%+</div>
-            <div class="metric-label">Cost saved</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ping An -->
-    <div class="project-card ec">
-      <div>
-        <div class="proj-meta">
-          <span class="proj-badge badge-ec">Product · InsurTech</span>
-          <span class="proj-badge badge-ops">Ping An Technology</span>
-        </div>
-        <div class="proj-title">Agent Recruitment & Digital Branch Platform</div>
-        <p class="proj-desc">
-          Owned the demand-side of Ping An Life's agent-growth planning tool — led requirements prioritisation, feature scoping, and 2-week agile sprints. Independently designed wireframe prototypes for the digital branch management dashboards covering headcount, KPI alerts, and activity tracking.
-        </p>
-        <div class="proj-highlights">
-          <span class="highlight">Requirements Ownership</span>
-          <span class="highlight">Dashboard Wireframes</span>
-          <span class="highlight">2-week Agile Sprints</span>
-          <span class="highlight result">1M+ Agents Reached</span>
-          <span class="highlight result">30%+ Adoption Rate</span>
-          <span class="highlight result">Pilot KPI +30%</span>
-        </div>
-        <div class="proj-stack">
-          <span class="stack-item">Product Design</span>
-          <span class="stack-item">SQL</span>
-          <span class="stack-item">KPI Dashboards</span>
-          <span class="stack-item">Agile</span>
-        </div>
-      </div>
-      <div class="proj-aside">
-        <div class="proj-status status-live">Delivered</div>
-        <div class="proj-metrics">
-          <div class="metric">
-            <div class="metric-val">1M+</div>
-            <div class="metric-label">Agents</div>
-          </div>
-          <div class="metric">
-            <div class="metric-val">30%+</div>
-            <div class="metric-label">Adoption</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
+
+  <!-- ═══ 数分 · DATA ANALYSIS ═══ -->
+  <div class="proj-group">
+    <div class="proj-group-title"><span class="cn">数分</span><span>Data Analysis</span></div>
+    <div class="projects-grid">
+
+      <!-- Growth Funnel Case Study -->
+      <div class="project-card data">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-badge badge-data" data-i18n="data1-badge1">Growth Analytics</span>
+            <span class="proj-badge badge-wip" data-i18n="data1-badge2">Self-Directed · Public Dataset</span>
+          </div>
+          <div class="proj-title" data-i18n="data1-title">Growth Funnel Diagnosis & Retention Segmentation</div>
+          <p class="proj-desc" data-i18n="data1-desc">
+            Diagnosed conversion-funnel and repurchase behaviour on a public multi-category e-commerce clickstream dataset (~80M events across two months) using chunked processing in pandas. Uncovered a 41.6% non-cart direct-purchase path, measured a 26.3% monthly repurchase rate, and split 255K+ churned users into three behaviourally distinct segments, each mapped to a control-point-based intervention design ("awaken → convert → recover").
+          </p>
+          <div class="proj-highlights">
+            <span class="highlight" data-i18n="data1-h1">Chunked Processing, 40M+ Rows</span>
+            <span class="highlight" data-i18n="data1-h2">Funnel Anomaly Diagnosis</span>
+            <span class="highlight" data-i18n="data1-h3">Cross-month Retention Analysis</span>
+            <span class="highlight result" data-i18n="data1-h4">3-Tier Churn Segmentation</span>
+            <span class="highlight result" data-i18n="data1-h5">Control-Point Intervention Design</span>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-item">Python</span>
+            <span class="stack-item">Pandas (chunked)</span>
+            <span class="stack-item">Kaggle Notebook</span>
+            <span class="stack-item">Set/Cohort Analysis</span>
+          </div>
+        </div>
+        <div class="proj-aside">
+          <div class="proj-status status-live" data-i18n="data1-status">Completed</div>
+          <div class="proj-metrics">
+            <div class="metric">
+              <div class="metric-val">26.3%</div>
+              <div class="metric-label" data-i18n="data1-m1">Repurchase rate</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">3</div>
+              <div class="metric-label" data-i18n="data1-m2">Churn segments</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Growth Funnel — analysis architecture diagram -->
+      <figure class="case-diagram-figure">
+        <svg class="case-diagram" viewBox="0 0 1260 640" role="img" data-i18n-aria="diagram-aria" aria-label="从漏斗诊断到三层干预设计的完整分析架构：流失用户按行为特征分为完全沉默、反复浏览未转化、已加购未支付三类，分别映射唤醒层、促成层、挽回层三种干预动作" font-family="'DM Sans', sans-serif">
+      <text x="30" y="18" font-size="14" font-weight="700" fill="#0F1117" data-i18n="hdr1">① 漏斗诊断</text>
+      <text x="30" y="31" font-size="9" font-weight="500" letter-spacing="0.06em" fill="#1A56A0">FUNNEL DIAGNOSIS</text>
+      <line x1="30" y1="38" x2="270" y2="38" stroke="#E4E1DA" stroke-width="1"/>
+      <text x="350" y="18" font-size="14" font-weight="700" fill="#0F1117" data-i18n="hdr2">② 复购分析</text>
+      <text x="350" y="31" font-size="9" font-weight="500" letter-spacing="0.06em" fill="#1A56A0">RETENTION</text>
+      <line x1="350" y1="38" x2="590" y2="38" stroke="#E4E1DA" stroke-width="1"/>
+      <text x="670" y="18" font-size="14" font-weight="700" fill="#0F1117" data-i18n="hdr3">③ 流失分层</text>
+      <text x="670" y="31" font-size="9" font-weight="500" letter-spacing="0.06em" fill="#1A56A0">CHURN SEGMENTATION</text>
+      <line x1="670" y1="38" x2="910" y2="38" stroke="#E4E1DA" stroke-width="1"/>
+      <text x="990" y="18" font-size="14" font-weight="700" fill="#0F1117" data-i18n="hdr4">④ 干预设计</text>
+      <text x="990" y="31" font-size="9" font-weight="500" letter-spacing="0.06em" fill="#1A56A0">TIERED INTERVENTION</text>
+      <line x1="990" y1="38" x2="1230" y2="38" stroke="#E4E1DA" stroke-width="1"/>
+      <line x1="310" y1="48" x2="310" y2="618" stroke="#E4E1DA" stroke-width="1" stroke-dasharray="3 5"/>
+      <line x1="630" y1="48" x2="630" y2="618" stroke="#E4E1DA" stroke-width="1" stroke-dasharray="3 5"/>
+      <line x1="950" y1="48" x2="950" y2="618" stroke="#E4E1DA" stroke-width="1" stroke-dasharray="3 5"/>
+      <rect x="30" y="60" width="240" height="60" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="30" y="60" width="4" height="60" fill="#1A56A0"/>
+      <text x="46" y="85" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n1a-t">全量浏览</text>
+      <text x="46" y="103" font-size="10.5" fill="#3A3D4A" data-i18n="n1a-s1">302.2万 用户 · View</text>
+      <line x1="150" y1="120" x2="150" y2="142" stroke="#1A56A0" stroke-width="1.5"/>
+      <polygon points="146,142 150,150 154,142" fill="#1A56A0"/>
+      <rect x="30" y="150" width="240" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="30" y="150" width="4" height="90" fill="#B8860B"/>
+      <text x="46" y="175" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n1b-t">购买路径分叉</text>
+      <text x="46" y="193" font-size="10.5" fill="#3A3D4A" data-i18n="n1b-s1">41.6% 未经加购直接购买</text>
+      <text x="46" y="208" font-size="10" fill="#7A7E8E" data-i18n="n1b-s2">14.4万人 · Direct Purchase</text>
+      <rect x="30" y="280" width="240" height="70" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="46" y="305" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n1note-t">方法处理</text>
+      <text x="46" y="323" font-size="10.5" fill="#3A3D4A" data-i18n="n1note-s1">pandas chunksize=50万分块处理</text>
+      <text x="46" y="338" font-size="10" fill="#7A7E8E" data-i18n="n1note-s2">4000万+行为事件，内存稳定</text>
+      <line x1="270" y1="195" x2="342" y2="195" stroke="#3A3D4A" stroke-width="1.5"/>
+      <polygon points="342,191 350,195 342,199" fill="#3A3D4A"/>
+      <text x="310" y="183" font-size="9.5" text-anchor="middle" fill="#3A3D4A" data-i18n="lbl-347k">34.7万购买用户</text>
+      <rect x="350" y="150" width="240" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="350" y="150" width="4" height="90" fill="#1A6E48"/>
+      <text x="366" y="175" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n2-t">月度复购率 26.3%</text>
+      <text x="366" y="193" font-size="10.5" fill="#3A3D4A" data-i18n="n2-s1">10月34.7万 → 11月44.2万</text>
+      <text x="366" y="208" font-size="10" fill="#7A7E8E" data-i18n="n2-s2">复购9.1万人</text>
+      <rect x="350" y="280" width="240" height="70" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="366" y="305" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n2note-t">分析设计</text>
+      <text x="366" y="323" font-size="10.5" fill="#3A3D4A" data-i18n="n2note-s1">以复购用户为对照组，</text>
+      <text x="366" y="338" font-size="10" fill="#7A7E8E" data-i18n="n2note-s2">而非孤立描述流失群体</text>
+      <line x1="590" y1="195" x2="662" y2="195" stroke="#3A3D4A" stroke-width="1.5"/>
+      <polygon points="662,191 670,195 662,199" fill="#3A3D4A"/>
+      <text x="630" y="183" font-size="9.5" text-anchor="middle" fill="#3A3D4A" data-i18n="lbl-737">73.7%未复购</text>
+      <rect x="670" y="150" width="240" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="670" y="150" width="4" height="90" fill="#7A7E8E"/>
+      <text x="686" y="175" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n3root-t">流失用户 25.6万</text>
+      <text x="686" y="193" font-size="10.5" fill="#3A3D4A" data-i18n="n3root-s1">73.7% 未复购（vs 复购对照组）</text>
+      <text x="686" y="208" font-size="10" fill="#7A7E8E" data-i18n="n3root-s2">255,832人</text>
+      <rect x="680" y="290" width="220" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="680" y="290" width="4" height="90" fill="#7A7E8E"/>
+      <text x="696" y="315" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n3a-t">完全沉默</text>
+      <text x="696" y="333" font-size="10.5" fill="#3A3D4A" data-i18n="n3a-s1">52.1% · 13.3万人</text>
+      <rect x="680" y="400" width="220" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="680" y="400" width="4" height="90" fill="#B8860B"/>
+      <text x="696" y="425" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n3b-t">反复浏览未转化</text>
+      <text x="696" y="443" font-size="10.5" fill="#3A3D4A" data-i18n="n3b-s1">76.1%* · 9.3万人</text>
+      <rect x="680" y="510" width="220" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="680" y="510" width="4" height="90" fill="#1A6E48"/>
+      <text x="696" y="535" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n3c-t">已加购未支付</text>
+      <text x="696" y="553" font-size="10.5" fill="#3A3D4A" data-i18n="n3c-s1">28.9%* · 3.5万人</text>
+      <text x="680" y="622" font-size="9" fill="#7A7E8E" data-i18n="footnote">*占活跃未转化用户（12.3万人）比例</text>
+      <circle cx="790" cy="240" r="3" fill="#3A3D4A"/>
+      <line x1="790" y1="240" x2="790" y2="282" stroke="#7A7E8E" stroke-width="1.5"/>
+      <polygon points="786,282 790,290 794,282" fill="#7A7E8E"/>
+      <text x="800" y="270" font-size="9.5" fill="#7A7E8E" data-i18n="lbl-521">52.1%</text>
+      <polyline points="790,240 790,255 930,255" fill="none" stroke="#3A3D4A" stroke-width="1.5"/>
+      <text x="870" y="249" font-size="9" fill="#3A3D4A" data-i18n="lbl-479">47.9% 活跃未转化 · 12.3万人</text>
+      <line x1="930" y1="255" x2="930" y2="555" stroke="#3A3D4A" stroke-width="1.5"/>
+      <line x1="930" y1="445" x2="908" y2="445" stroke="#B8860B" stroke-width="1.5"/>
+      <polygon points="908,441 900,445 908,449" fill="#B8860B"/>
+      <text x="905" y="435" font-size="9.5" text-anchor="end" fill="#B8860B" data-i18n="lbl-761">76.1%*</text>
+      <line x1="930" y1="555" x2="908" y2="555" stroke="#1A6E48" stroke-width="1.5"/>
+      <polygon points="908,551 900,555 908,559" fill="#1A6E48"/>
+      <text x="905" y="545" font-size="9.5" text-anchor="end" fill="#1A6E48" data-i18n="lbl-289">28.9%*</text>
+      <rect x="990" y="290" width="240" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="990" y="290" width="4" height="90" fill="#7A7E8E"/>
+      <text x="1006" y="315" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n4a-t">唤醒层</text>
+      <text x="1006" y="333" font-size="10.5" fill="#3A3D4A" data-i18n="n4a-s1">站外触达：push/短信/邮件</text>
+      <text x="1006" y="348" font-size="10" fill="#7A7E8E" data-i18n="n4a-s2">+ 唤醒型激励券</text>
+      <rect x="990" y="400" width="240" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="990" y="400" width="4" height="90" fill="#B8860B"/>
+      <text x="1006" y="425" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n4b-t">促成层</text>
+      <text x="1006" y="443" font-size="10.5" fill="#3A3D4A" data-i18n="n4b-s1">站内实时提示：</text>
+      <text x="1006" y="458" font-size="10" fill="#7A7E8E" data-i18n="n4b-s2">库存紧张 / 限时优惠</text>
+      <rect x="990" y="510" width="240" height="90" rx="8" fill="#FFFFFF" stroke="#E4E1DA" stroke-width="1"/>
+      <rect x="990" y="510" width="4" height="90" fill="#1A6E48"/>
+      <text x="1006" y="535" font-size="13" font-weight="600" fill="#0F1117" data-i18n="n4c-t">挽回层</text>
+      <text x="1006" y="553" font-size="10.5" fill="#3A3D4A" data-i18n="n4c-s1">24h提醒 → 72h限时折扣</text>
+      <text x="1006" y="568" font-size="10" fill="#7A7E8E" data-i18n="n4c-s2">（分级触发）</text>
+      <line x1="900" y1="335" x2="982" y2="335" stroke="#7A7E8E" stroke-width="1.5"/>
+      <polygon points="982,331 990,335 982,339" fill="#7A7E8E"/>
+      <line x1="900" y1="445" x2="982" y2="445" stroke="#B8860B" stroke-width="1.5"/>
+      <polygon points="982,441 990,445 982,449" fill="#B8860B"/>
+      <line x1="900" y1="555" x2="982" y2="555" stroke="#1A6E48" stroke-width="1.5"/>
+      <polygon points="982,551 990,555 982,559" fill="#1A6E48"/>
+        </svg>
+        <figcaption class="diagram-caption" data-i18n="diagram-caption">图示：从漏斗诊断（发现41.6%用户未经加购直接购买）到复购分析（月度复购率26.3%），再到流失用户三层分群，最终映射为差异化的干预动作设计。*反复浏览/已加购比例以"活跃未转化用户"（12.3万人）为分母计算。</figcaption>
+      </figure>
+
+      <!-- NTU Churn Prediction -->
+      <div class="project-card data">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-badge badge-data" data-i18n="data2-badge1">Data Science</span>
+            <span class="proj-badge badge-ai" data-i18n="data2-badge2">NTU Coursework</span>
+          </div>
+          <div class="proj-title" data-i18n="data2-title">E-commerce Customer Churn Prediction Model</div>
+          <p class="proj-desc" data-i18n="data2-desc">
+            Built and evaluated a neural-network churn classifier on a public e-commerce customer dataset (5,634 customers). Identified and excluded two leakage-prone features despite strong statistical significance, then used SHAP to translate model outputs into business-readable churn drivers, benchmarking against XGBoost.
+          </p>
+          <div class="proj-highlights">
+            <span class="highlight" data-i18n="data2-h1">Data Leakage Detection</span>
+            <span class="highlight" data-i18n="data2-h2">SHAP Driver Analysis</span>
+            <span class="highlight" data-i18n="data2-h3">NN vs. XGBoost Benchmark</span>
+            <span class="highlight result" data-i18n="data2-h4">Top-5% Precision 96.4%</span>
+            <span class="highlight result" data-i18n="data2-h5">Validation AUC 0.938</span>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-item">Python</span>
+            <span class="stack-item">Neural Networks</span>
+            <span class="stack-item">SHAP</span>
+            <span class="stack-item">XGBoost</span>
+            <span class="stack-item">scikit-learn</span>
+          </div>
+        </div>
+        <div class="proj-aside">
+          <div class="proj-status status-live" data-i18n="data2-status">Completed</div>
+          <div class="proj-metrics">
+            <div class="metric">
+              <div class="metric-val">96.4%</div>
+              <div class="metric-label" data-i18n="data2-m1">Top-5% precision</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">0.938</div>
+              <div class="metric-label" data-i18n="data2-m2">Validation AUC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ 产品 · PRODUCT & AI SYSTEMS ═══ -->
+  <div class="proj-group">
+    <div class="proj-group-title"><span class="cn">产品</span><span>Product & AI Systems</span></div>
+    <div class="projects-grid">
+
+      <!-- KYC -->
+      <div class="project-card kyc">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-badge badge-kyc" data-i18n="prod1-badge1">FinTech · Compliance</span>
+            <span class="proj-badge badge-ai" data-i18n="prod1-badge2">Agentic AI</span>
+            <span class="proj-badge badge-ai" data-i18n="prod1-badge3">NTU Coursework</span>
+          </div>
+          <div class="proj-title" data-i18n="prod1-title">KYC Compliance Agentic Pipeline</div>
+          <p class="proj-desc" data-i18n="prod1-desc">
+            Designed and built a production-grade 3-agent identity verification system for financial customer onboarding. The pipeline automates compliance decisions across PASS / REVIEW / REJECT with a full explainable audit trail — validated against global regulatory frameworks (CN, SG, EU, US).
+          </p>
+          <div class="proj-highlights">
+            <span class="highlight" data-i18n="prod1-h1">Extraction Agent</span>
+            <span class="highlight" data-i18n="prod1-h2">MRZ Integrity Check</span>
+            <span class="highlight" data-i18n="prod1-h3">Fuzzy Name Matching</span>
+            <span class="highlight" data-i18n="prod1-h4">Adverse Media Screening</span>
+            <span class="highlight" data-i18n="prod1-h5">Weighted Risk Scoring</span>
+            <span class="highlight result" data-i18n="prod1-h6">3 Scenarios Validated</span>
+            <span class="highlight result" data-i18n="prod1-h7">HITL Decision Gate</span>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-item">Python</span>
+            <span class="stack-item">LangChain</span>
+            <span class="stack-item">Streamlit</span>
+            <span class="stack-item">MRZ Parser</span>
+            <span class="stack-item">Fuzzy Matching</span>
+          </div>
+        </div>
+        <div class="proj-aside">
+          <div class="proj-status status-live" data-i18n="prod1-status">Live Demo</div>
+          <div class="proj-metrics">
+            <div class="metric">
+              <div class="metric-val">3</div>
+              <div class="metric-label" data-i18n="prod1-m1">Agent pipeline</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">4+</div>
+              <div class="metric-label" data-i18n="prod1-m2">Jurisdictions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LangGraph -->
+      <div class="project-card ai">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-badge badge-ai" data-i18n="prod2-badge1">Multi-Agent</span>
+            <span class="proj-badge badge-ec" data-i18n="prod2-badge2">E-commerce</span>
+            <span class="proj-badge badge-wip" data-i18n="prod2-badge3">In Progress</span>
+          </div>
+          <div class="proj-title" data-i18n="prod2-title">E-commerce CS Multi-Agent System</div>
+          <p class="proj-desc" data-i18n="prod2-desc">
+            Built a LangGraph-powered multi-agent customer service system for e-commerce. An intent-classification Orchestrator dynamically routes incoming queries to four specialist sub-agents — order, logistics, payment, and complaint — covering the full customer service workflow.
+          </p>
+          <div class="proj-highlights">
+            <span class="highlight" data-i18n="prod2-h1">Intent-driven Orchestrator</span>
+            <span class="highlight" data-i18n="prod2-h2">4 Sub-agents</span>
+            <span class="highlight" data-i18n="prod2-h3">Conditional Edge Routing</span>
+            <span class="highlight result" data-i18n="prod2-h4">LLM Intent Classification</span>
+            <span class="highlight result" data-i18n="prod2-h5">Full CS Workflow Coverage</span>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-item">LangGraph</span>
+            <span class="stack-item">LangChain</span>
+            <span class="stack-item">Python</span>
+            <span class="stack-item">LLM API</span>
+          </div>
+        </div>
+        <div class="proj-aside">
+          <div class="proj-status status-wip" data-i18n="prod2-status">Demo Soon</div>
+          <div class="proj-metrics">
+            <div class="metric">
+              <div class="metric-val">4</div>
+              <div class="metric-label" data-i18n="prod2-m1">Sub-agents</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">1</div>
+              <div class="metric-label" data-i18n="prod2-m2">Orchestrator</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 <hr class="divider">
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-eyebrow">Career</div>
-  <div class="section-title">Work Experience</div>
+  <div class="section-eyebrow" data-i18n="exp-eyebrow">Career</div>
+  <div class="section-title" data-i18n="exp-title">Work Experience</div>
   <div class="exp-list">
 
     <div class="exp-item">
-      <div class="exp-period">2021.11 — 2024.09<br>Hangzhou, China</div>
+      <div class="exp-period" data-i18n-html="exp1-period">2021.11 — 2024.09<br>Hangzhou, China</div>
       <div>
         <div class="exp-company">Ant Group (Alipay)</div>
-        <div class="exp-role">Process & Quality Operations Specialist · AI Force Division</div>
+        <div class="exp-role" data-i18n="exp1-role">Process & Quality Operations Specialist · AI Force Division</div>
         <ul class="exp-bullets">
-          <li><strong>Built from zero</strong> a real-time customer downgrade strategy system — defined anomalous-user classification from behavioural signals, designed multi-tier service-permission routing rules; reduced abnormal-interference volume by <strong>90 percentage points</strong>.</li>
-          <li><strong>Defined QC business requirements</strong> for extreme customer-facing scenarios — decomposed inspection standards to atomic dimensions, translated into structured Prompt-engineered inspection pipeline enabling real-time coaching, alerts, and failsafe.</li>
-          <li><strong>Replaced COPC random-sampling</strong> with intent-driven sampling; upgraded QC from call-level to event-level granularity — CSAT +2%, service-risk spillover significantly reduced.</li>
-          <li>Built 15-person outsourced QC team; restructured 30-person in-house team — maintained cross-LOB quality while achieving <strong>50%+ headcount cost reduction</strong>.</li>
+          <li data-i18n-html="exp1-b1"><strong>Built from zero</strong> a real-time customer downgrade strategy system — defined anomalous-user classification from behavioural signals, designed multi-tier service-permission routing rules; reduced abnormal-interference volume by <strong>90 percentage points</strong>.</li>
+          <li data-i18n-html="exp1-b2"><strong>Defined QC business requirements</strong> for extreme customer-facing scenarios — decomposed inspection standards to atomic dimensions, translated into structured Prompt-engineered inspection pipeline enabling real-time coaching, alerts, and failsafe.</li>
+          <li data-i18n-html="exp1-b3"><strong>Replaced COPC random-sampling</strong> with intent-driven sampling; upgraded QC from call-level to event-level granularity — CSAT +2%, service-risk spillover significantly reduced.</li>
+          <li data-i18n-html="exp1-b4">Built 15-person outsourced QC team; restructured 30-person in-house team — maintained cross-LOB quality while achieving <strong>50%+ headcount cost reduction</strong>.</li>
         </ul>
       </div>
     </div>
 
     <div class="exp-item">
-      <div class="exp-period">2020.04 — 2021.11<br>Shanghai / Shenzhen</div>
+      <div class="exp-period" data-i18n-html="exp2-period">2020.04 — 2021.11<br>Shanghai / Shenzhen</div>
       <div>
         <div class="exp-company">Ping An Technology</div>
-        <div class="exp-role">Associate Director, Process & Operations Consulting</div>
+        <div class="exp-role" data-i18n="exp2-role">Associate Director, Process & Operations Consulting</div>
         <ul class="exp-bullets">
-          <li><strong>Owned demand-side</strong> of Ping An Life agent-growth planning tool — led requirements prioritisation, feature scoping across 2-week agile sprints; scaled to <strong>1M+ agents, 30%+ active adoption</strong> within 1 year.</li>
-          <li><strong>Independently designed wireframe prototypes</strong> for digital branch management dashboards (headcount trends, KPI alerts, activity tracking); led 4-person intern team through UAT and rollout — pilot KPI outperformed average by <strong>30%</strong>.</li>
+          <li data-i18n-html="exp2-b1"><strong>Owned demand-side</strong> of Ping An Life agent-growth planning tool — led requirements prioritisation, feature scoping across 2-week agile sprints; scaled to <strong>1M+ agents, 30%+ active adoption</strong> within 1 year.</li>
+          <li data-i18n-html="exp2-b2"><strong>Independently designed wireframe prototypes</strong> for digital branch management dashboards (headcount trends, KPI alerts, activity tracking); led 4-person intern team through UAT and rollout — pilot KPI outperformed average by <strong>30%</strong>.</li>
         </ul>
       </div>
     </div>
 
     <div class="exp-item">
-      <div class="exp-period">2016.07 — 2019.11<br>Guangzhou, China</div>
+      <div class="exp-period" data-i18n-html="exp3-period">2016.07 — 2019.11<br>Guangzhou, China</div>
       <div>
         <div class="exp-company">AMT Consulting</div>
-        <div class="exp-role">Management Consultant / Project Manager</div>
+        <div class="exp-role" data-i18n="exp3-role">Management Consultant / Project Manager</div>
         <ul class="exp-bullets">
-          <li>Delivered <strong>20+ process optimisation</strong> and digital transformation projects across manufacturing, energy, and consumer goods.</li>
-          <li>Led CGN Research Institute IPD project — benchmarked against Huawei IPD; mapped 8 R&D specialisations to drive standardisation.</li>
-          <li>Repositioned Kweichow Moutai quality department; operationalised quality planning, non-conformance control, and incident management. Supported ISO 9000 certification.</li>
+          <li data-i18n-html="exp3-b1">Delivered <strong>20+ process optimisation</strong> and digital transformation projects across manufacturing, energy, and consumer goods.</li>
+          <li data-i18n-html="exp3-b2">Led CGN Research Institute IPD project — benchmarked against Huawei IPD; mapped 8 R&D specialisations to drive standardisation.</li>
+          <li data-i18n-html="exp3-b3">Repositioned Kweichow Moutai quality department; operationalised quality planning, non-conformance control, and incident management. Supported ISO 9000 certification.</li>
         </ul>
       </div>
     </div>
@@ -700,13 +956,13 @@ footer {
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-eyebrow">Capabilities</div>
-  <div class="section-title">Skills & Tools</div>
+  <div class="section-eyebrow" data-i18n="skills-eyebrow">Capabilities</div>
+  <div class="section-title" data-i18n="skills-title">Skills & Tools</div>
   <div class="skills-grid">
 
     <div class="skill-card">
       <div class="skill-card-icon" style="background:#D6E4F7;">🤖</div>
-      <div class="skill-card-title">Agentic AI & LLMs</div>
+      <div class="skill-card-title" data-i18n="skill1-title">Agentic AI & LLMs</div>
       <div class="skill-items">
         <span class="skill-pill">LangGraph</span>
         <span class="skill-pill">LangChain</span>
@@ -718,7 +974,7 @@ footer {
 
     <div class="skill-card">
       <div class="skill-card-icon" style="background:#D4EDE1;">📊</div>
-      <div class="skill-card-title">Data & Analytics</div>
+      <div class="skill-card-title" data-i18n="skill2-title">Data & Analytics</div>
       <div class="skill-items">
         <span class="skill-pill">SQL</span>
         <span class="skill-pill">Python (pandas)</span>
@@ -730,7 +986,7 @@ footer {
 
     <div class="skill-card">
       <div class="skill-card-icon" style="background:#F5EDD3;">🎯</div>
-      <div class="skill-card-title">Product & Strategy</div>
+      <div class="skill-card-title" data-i18n="skill3-title">Product & Strategy</div>
       <div class="skill-items">
         <span class="skill-pill">Requirements Prioritisation</span>
         <span class="skill-pill">Wireframing</span>
@@ -742,7 +998,7 @@ footer {
 
     <div class="skill-card">
       <div class="skill-card-icon" style="background:#FCEBEB;">⚙️</div>
-      <div class="skill-card-title">AI Systems Design</div>
+      <div class="skill-card-title" data-i18n="skill4-title">AI Systems Design</div>
       <div class="skill-items">
         <span class="skill-pill">NLP Rule Systems</span>
         <span class="skill-pill">Intent Detection</span>
@@ -754,7 +1010,7 @@ footer {
 
     <div class="skill-card">
       <div class="skill-card-icon" style="background:#EDE4F5;">🌏</div>
-      <div class="skill-card-title">Domain Expertise</div>
+      <div class="skill-card-title" data-i18n="skill5-title">Domain Expertise</div>
       <div class="skill-items">
         <span class="skill-pill">FinTech / Payments</span>
         <span class="skill-pill">KYC / AML</span>
@@ -766,7 +1022,7 @@ footer {
 
     <div class="skill-card">
       <div class="skill-card-icon" style="background:#E4F0E4;">🎓</div>
-      <div class="skill-card-title">Education</div>
+      <div class="skill-card-title" data-i18n="skill6-title">Education</div>
       <div class="skill-items">
         <span class="skill-pill">NTU MCAAI (2025–26)</span>
         <span class="skill-pill">ACCA 14/14</span>
@@ -785,8 +1041,8 @@ footer {
 <section id="contact">
   <div class="contact-box">
     <div>
-      <div class="contact-title">Let's work together</div>
-      <p class="contact-desc">
+      <div class="contact-title" data-i18n="contact-title">Let's work together</div>
+      <p class="contact-desc" data-i18n-html="contact-desc">
         Open to AI Product Manager, AI Solutions, and Operations Strategy roles in Singapore and Hong Kong.<br>
         NTU MCAAI graduating October 2026.
       </p>
@@ -795,16 +1051,246 @@ footer {
       <a href="mailto:yuanyuan010@e.ntu.edu.sg" class="contact-link">
         ✉ yuanyuan010@e.ntu.edu.sg
       </a>
-      <a href="https://linkedin.com" target="_blank" class="contact-link">
+      <a href="https://linkedin.com" target="_blank" class="contact-link" data-i18n="contact-linkedin">
         in LinkedIn Profile →
       </a>
     </div>
   </div>
 </section>
 
-<footer>
+<footer data-i18n-html="footer">
   © 2026 Yuanyuan (Yolanda) Huang &nbsp;·&nbsp; Built for humans, powered by curiosity
 </footer>
+
+<script>
+const I18N = {
+  "nav-logo": { en: "Yolanda Huang", zh: "黄媛媛" },
+  "nav-projects": { en: "Projects", zh: "项目" },
+  "nav-experience": { en: "Experience", zh: "经历" },
+  "nav-skills": { en: "Skills", zh: "技能" },
+  "nav-contact": { en: "Contact", zh: "联系" },
+
+  "hero-eyebrow": { en: "NTU MCAAI · Singapore", zh: "南洋理工大学应用人工智能硕士 · 新加坡" },
+  "hero-desc": { en: "AI Operations & Solutions specialist bridging business strategy and AI deployment — with 8+ years delivering intelligent systems in FinTech and consulting across China and Southeast Asia.", zh: "AI运营与解决方案专家，连接商业战略与AI落地——拥有8年以上在金融科技与咨询领域交付智能系统的经验，工作横跨中国与东南亚。" },
+  "tag-1": { en: "AI Product", zh: "AI产品" },
+  "tag-2": { en: "AI Solutions", zh: "AI解决方案" },
+  "tag-3": { en: "FinTech", zh: "金融科技" },
+  "tag-4": { en: "Agentic AI", zh: "智能体AI" },
+  "tag-5": { en: "Operations Strategy", zh: "运营战略" },
+  "btn-projects": { en: "View Projects →", zh: "查看项目 →" },
+  "btn-contact": { en: "Get in Touch", zh: "联系我" },
+  "hero-card-label": { en: "At a Glance", zh: "概览" },
+  "stat-1": { en: "Years in AI & Operations", zh: "AI与运营经验（年）" },
+  "stat-2": { en: "Cross-industry Projects", zh: "跨行业项目" },
+  "stat-3": { en: "Users Impacted", zh: "触达用户" },
+  "stat-4": { en: "AI Demos Built", zh: "AI演示项目" },
+  "hero-card-footer": {
+    en: "<strong>Currently:</strong> MCAAI @ NTU Singapore<br><strong>Open to:</strong> AI PM · AI Solutions · Ops Strategy",
+    zh: "<strong>目前：</strong>新加坡南洋理工大学 MCAAI 在读<br><strong>期望方向：</strong>AI产品经理 · AI解决方案顾问 · 运营战略"
+  },
+
+  "projects-eyebrow": { en: "Selected Work", zh: "精选作品" },
+  "projects-title": { en: "Projects & Case Studies", zh: "项目与案例" },
+
+  "ops1-badge1": { en: "AI Operations", zh: "AI运营" },
+  "ops1-badge2": { en: "FinTech · Ant Group", zh: "金融科技 · 蚂蚁集团" },
+  "ops1-title": { en: "Intelligent QC & Flow Operations System", zh: "智能质检与流程运营系统" },
+  "ops1-desc": { en: "Led AI-driven overhaul of customer service quality control and escalation workflows at Ant Group (Alipay) — serving 30K+ monthly cases. Replaced manual random sampling with intent-driven intelligent full-inspection; built a real-time customer downgrade strategy system from zero.", zh: "主导蚂蚁集团（支付宝）客服质检与升级流程的AI驱动改造，覆盖每月3万+案例。用意图驱动的智能全检替代人工抽检，从0到1搭建实时客户降级策略系统。" },
+  "ops1-h1": { en: "Prompt-engineered QC Pipeline", zh: "Prompt工程化质检流水线" },
+  "ops1-h2": { en: "Atomic-level Capability Decomposition", zh: "原子级能力拆解" },
+  "ops1-h3": { en: "Real-time Risk Stratification", zh: "实时风险分层" },
+  "ops1-h4": { en: "↓ 90pt Abnormal Interference", zh: "异常干扰↓90个百分点" },
+  "ops1-h5": { en: "CSAT +2%", zh: "满意度+2%" },
+  "ops1-h6": { en: "50%+ Cost Reduction", zh: "成本降低50%+" },
+  "ops1-status": { en: "Delivered", zh: "已交付" },
+  "ops1-m1": { en: "Risk reduction", zh: "风险降低" },
+  "ops1-m2": { en: "Cost saved", zh: "节省成本" },
+
+  "ops2-badge1": { en: "Product · InsurTech", zh: "产品 · 保险科技" },
+  "ops2-badge2": { en: "Ping An Technology", zh: "平安科技" },
+  "ops2-title": { en: "Agent Recruitment & Digital Branch Platform", zh: "代理人招募与数字化网点平台" },
+  "ops2-desc": { en: "Owned the demand-side of Ping An Life's agent-growth planning tool — led requirements prioritisation, feature scoping, and 2-week agile sprints. Independently designed wireframe prototypes for the digital branch management dashboards covering headcount, KPI alerts, and activity tracking.", zh: "负责平安人寿代理人增长规划工具的需求端——主导需求优先级排序、功能范围界定与两周一次的敏捷迭代。独立设计数字化网点管理看板的线框原型，覆盖人力、KPI预警与活动追踪。" },
+  "ops2-h1": { en: "Requirements Ownership", zh: "需求Owner" },
+  "ops2-h2": { en: "Dashboard Wireframes", zh: "看板线框设计" },
+  "ops2-h3": { en: "2-week Agile Sprints", zh: "两周敏捷迭代" },
+  "ops2-h4": { en: "1M+ Agents Reached", zh: "触达100万+代理人" },
+  "ops2-h5": { en: "30%+ Adoption Rate", zh: "采用率30%+" },
+  "ops2-h6": { en: "Pilot KPI +30%", zh: "试点KPI提升30%" },
+  "ops2-status": { en: "Delivered", zh: "已交付" },
+  "ops2-m1": { en: "Agents", zh: "代理人" },
+  "ops2-m2": { en: "Adoption", zh: "采用率" },
+
+  "data1-badge1": { en: "Growth Analytics", zh: "增长分析" },
+  "data1-badge2": { en: "Self-Directed · Public Dataset", zh: "自主项目 · 公开数据集" },
+  "data1-title": { en: "Growth Funnel Diagnosis & Retention Segmentation", zh: "增长漏斗诊断与留存分层" },
+  "data1-desc": { en: "Diagnosed conversion-funnel and repurchase behaviour on a public multi-category e-commerce clickstream dataset (~80M events across two months) using chunked processing in pandas. Uncovered a 41.6% non-cart direct-purchase path, measured a 26.3% monthly repurchase rate, and split 255K+ churned users into three behaviourally distinct segments, each mapped to a control-point-based intervention design (\"awaken → convert → recover\").", zh: "基于一个公开的多品类电商点击流数据集（约两个月8000万条事件），用pandas分块处理完成转化漏斗与复购行为诊断。发现41.6%的购买路径不经过加购环节，测得月度复购率26.3%，并将25.5万+流失用户拆分为三类行为特征各异的群体，分别对应\"唤醒-促成-挽回\"三层干预设计。" },
+  "data1-h1": { en: "Chunked Processing, 40M+ Rows", zh: "分块处理4000万+行" },
+  "data1-h2": { en: "Funnel Anomaly Diagnosis", zh: "漏斗异常诊断" },
+  "data1-h3": { en: "Cross-month Retention Analysis", zh: "跨月留存分析" },
+  "data1-h4": { en: "3-Tier Churn Segmentation", zh: "三层流失分群" },
+  "data1-h5": { en: "Control-Point Intervention Design", zh: "控制点干预设计" },
+  "data1-status": { en: "Completed", zh: "已完成" },
+  "data1-m1": { en: "Repurchase rate", zh: "复购率" },
+  "data1-m2": { en: "Churn segments", zh: "流失分群" },
+
+  "data2-badge1": { en: "Data Science", zh: "数据科学" },
+  "data2-badge2": { en: "NTU Coursework", zh: "NTU课程项目" },
+  "data2-title": { en: "E-commerce Customer Churn Prediction Model", zh: "电商客户流失预测模型" },
+  "data2-desc": { en: "Built and evaluated a neural-network churn classifier on a public e-commerce customer dataset (5,634 customers). Identified and excluded two leakage-prone features despite strong statistical significance, then used SHAP to translate model outputs into business-readable churn drivers, benchmarking against XGBoost.", zh: "基于一个公开电商客户数据集（5,634名客户）搭建并评估神经网络流失分类模型。识别并剔除了两个统计显著但存在数据泄漏风险的特征，随后用SHAP将模型输出转化为可读的业务流失驱动因素，并与XGBoost做对比。" },
+  "data2-h1": { en: "Data Leakage Detection", zh: "数据泄漏识别" },
+  "data2-h2": { en: "SHAP Driver Analysis", zh: "SHAP驱动因素分析" },
+  "data2-h3": { en: "NN vs. XGBoost Benchmark", zh: "神经网络对比XGBoost" },
+  "data2-h4": { en: "Top-5% Precision 96.4%", zh: "Top 5%精确率96.4%" },
+  "data2-h5": { en: "Validation AUC 0.938", zh: "验证集AUC 0.938" },
+  "data2-status": { en: "Completed", zh: "已完成" },
+  "data2-m1": { en: "Top-5% precision", zh: "Top5%精确率" },
+  "data2-m2": { en: "Validation AUC", zh: "验证AUC" },
+
+  "prod1-badge1": { en: "FinTech · Compliance", zh: "金融科技 · 合规" },
+  "prod1-badge2": { en: "Agentic AI", zh: "智能体AI" },
+  "prod1-badge3": { en: "NTU Coursework", zh: "NTU课程项目" },
+  "prod1-title": { en: "KYC Compliance Agentic Pipeline", zh: "KYC合规智能体流水线" },
+  "prod1-desc": { en: "Designed and built a production-grade 3-agent identity verification system for financial customer onboarding. The pipeline automates compliance decisions across PASS / REVIEW / REJECT with a full explainable audit trail — validated against global regulatory frameworks (CN, SG, EU, US).", zh: "为金融客户开户设计并搭建了一套生产级三智能体身份验证系统。该流水线自动完成PASS/REVIEW/REJECT合规决策，并提供完整的可解释审计轨迹——已针对中国、新加坡、欧盟、美国等多地监管框架验证。" },
+  "prod1-h1": { en: "Extraction Agent", zh: "信息提取智能体" },
+  "prod1-h2": { en: "MRZ Integrity Check", zh: "MRZ完整性校验" },
+  "prod1-h3": { en: "Fuzzy Name Matching", zh: "姓名模糊匹配" },
+  "prod1-h4": { en: "Adverse Media Screening", zh: "负面媒体筛查" },
+  "prod1-h5": { en: "Weighted Risk Scoring", zh: "加权风险评分" },
+  "prod1-h6": { en: "3 Scenarios Validated", zh: "验证3类场景" },
+  "prod1-h7": { en: "HITL Decision Gate", zh: "人机协同决策关卡" },
+  "prod1-status": { en: "Live Demo", zh: "在线演示" },
+  "prod1-m1": { en: "Agent pipeline", zh: "智能体流水线" },
+  "prod1-m2": { en: "Jurisdictions", zh: "覆盖地区" },
+
+  "prod2-badge1": { en: "Multi-Agent", zh: "多智能体" },
+  "prod2-badge2": { en: "E-commerce", zh: "电商" },
+  "prod2-badge3": { en: "In Progress", zh: "进行中" },
+  "prod2-title": { en: "E-commerce CS Multi-Agent System", zh: "电商客服多智能体系统" },
+  "prod2-desc": { en: "Built a LangGraph-powered multi-agent customer service system for e-commerce. An intent-classification Orchestrator dynamically routes incoming queries to four specialist sub-agents — order, logistics, payment, and complaint — covering the full customer service workflow.", zh: "基于LangGraph搭建电商多智能体客服系统。一个意图分类编排器（Orchestrator）动态将来访问题路由至四个专项子智能体——订单、物流、支付与投诉——覆盖完整客服工作流。" },
+  "prod2-h1": { en: "Intent-driven Orchestrator", zh: "意图驱动编排器" },
+  "prod2-h2": { en: "4 Sub-agents", zh: "4个子智能体" },
+  "prod2-h3": { en: "Conditional Edge Routing", zh: "条件边路由" },
+  "prod2-h4": { en: "LLM Intent Classification", zh: "大模型意图分类" },
+  "prod2-h5": { en: "Full CS Workflow Coverage", zh: "全客服流程覆盖" },
+  "prod2-status": { en: "Demo Soon", zh: "演示即将上线" },
+  "prod2-m1": { en: "Sub-agents", zh: "子智能体" },
+  "prod2-m2": { en: "Orchestrator", zh: "编排器" },
+
+  "exp-eyebrow": { en: "Career", zh: "职业经历" },
+  "exp-title": { en: "Work Experience", zh: "工作经历" },
+
+  "exp1-period": { en: "2021.11 — 2024.09<br>Hangzhou, China", zh: "2021.11 — 2024.09<br>杭州，中国" },
+  "exp1-role": { en: "Process & Quality Operations Specialist · AI Force Division", zh: "流程与质量运营专家 · AI Force事业部" },
+  "exp1-b1": { en: "<strong>Built from zero</strong> a real-time customer downgrade strategy system — defined anomalous-user classification from behavioural signals, designed multi-tier service-permission routing rules; reduced abnormal-interference volume by <strong>90 percentage points</strong>.", zh: "<strong>从0到1搭建</strong>实时客户降级策略系统——基于行为信号定义异常用户分类，设计多层级服务权限路由规则；异常干扰量下降<strong>90个百分点</strong>。" },
+  "exp1-b2": { en: "<strong>Defined QC business requirements</strong> for extreme customer-facing scenarios — decomposed inspection standards to atomic dimensions, translated into structured Prompt-engineered inspection pipeline enabling real-time coaching, alerts, and failsafe.", zh: "<strong>为极端客户场景定义质检业务需求</strong>——将质检标准拆解至原子维度，转化为结构化的Prompt工程化质检流水线，支撑实时指导、预警与兜底机制。" },
+  "exp1-b3": { en: "<strong>Replaced COPC random-sampling</strong> with intent-driven sampling; upgraded QC from call-level to event-level granularity — CSAT +2%, service-risk spillover significantly reduced.", zh: "<strong>以意图驱动抽检替代COPC随机抽检</strong>，将质检颗粒度从通话级升级到事件级——客户满意度+2%，服务风险外溢显著降低。" },
+  "exp1-b4": { en: "Built 15-person outsourced QC team; restructured 30-person in-house team — maintained cross-LOB quality while achieving <strong>50%+ headcount cost reduction</strong>.", zh: "组建15人外包质检团队，重组30人内部团队——在保障跨业务线质量的同时实现<strong>人力成本降低50%+</strong>。" },
+
+  "exp2-period": { en: "2020.04 — 2021.11<br>Shanghai / Shenzhen", zh: "2020.04 — 2021.11<br>上海 / 深圳" },
+  "exp2-role": { en: "Associate Director, Process & Operations Consulting", zh: "流程与运营咨询副总监" },
+  "exp2-b1": { en: "<strong>Owned demand-side</strong> of Ping An Life agent-growth planning tool — led requirements prioritisation, feature scoping across 2-week agile sprints; scaled to <strong>1M+ agents, 30%+ active adoption</strong> within 1 year.", zh: "<strong>负责</strong>平安人寿代理人增长规划工具的需求端——主导需求优先级排序，两周一迭代的敏捷功能规划；一年内规模扩展至<strong>100万+代理人，活跃采用率30%+</strong>。" },
+  "exp2-b2": { en: "<strong>Independently designed wireframe prototypes</strong> for digital branch management dashboards (headcount trends, KPI alerts, activity tracking); led 4-person intern team through UAT and rollout — pilot KPI outperformed average by <strong>30%</strong>.", zh: "<strong>独立设计</strong>数字化网点管理看板线框原型（人力趋势、KPI预警、活动追踪）；带领4人实习生团队完成UAT与上线——试点KPI超均值<strong>30%</strong>。" },
+
+  "exp3-period": { en: "2016.07 — 2019.11<br>Guangzhou, China", zh: "2016.07 — 2019.11<br>广州，中国" },
+  "exp3-role": { en: "Management Consultant / Project Manager", zh: "管理咨询顾问 / 项目经理" },
+  "exp3-b1": { en: "Delivered <strong>20+ process optimisation</strong> and digital transformation projects across manufacturing, energy, and consumer goods.", zh: "在制造业、能源、消费品等行业交付<strong>20+流程优化</strong>与数字化转型项目。" },
+  "exp3-b2": { en: "Led CGN Research Institute IPD project — benchmarked against Huawei IPD; mapped 8 R&D specialisations to drive standardisation.", zh: "主导中广核研究院IPD项目——对标华为IPD体系，梳理8个研发专业方向以推动标准化。" },
+  "exp3-b3": { en: "Repositioned Kweichow Moutai quality department; operationalised quality planning, non-conformance control, and incident management. Supported ISO 9000 certification.", zh: "重塑贵州茅台质量部门定位，落地质量规划、不合格品管控与事件管理体系，支持ISO 9000认证。" },
+
+  "skills-eyebrow": { en: "Capabilities", zh: "能力" },
+  "skills-title": { en: "Skills & Tools", zh: "技能与工具" },
+  "skill1-title": { en: "Agentic AI & LLMs", zh: "智能体AI与大模型" },
+  "skill2-title": { en: "Data & Analytics", zh: "数据与分析" },
+  "skill3-title": { en: "Product & Strategy", zh: "产品与战略" },
+  "skill4-title": { en: "AI Systems Design", zh: "AI系统设计" },
+  "skill5-title": { en: "Domain Expertise", zh: "领域专长" },
+  "skill6-title": { en: "Education", zh: "教育背景" },
+
+  "contact-title": { en: "Let's work together", zh: "期待与你合作" },
+  "contact-desc": { en: "Open to AI Product Manager, AI Solutions, and Operations Strategy roles in Singapore and Hong Kong.<br>NTU MCAAI graduating October 2026.", zh: "期待在新加坡与香港的AI产品经理、AI解决方案顾问、运营战略方向的机会。<br>新加坡南洋理工大学MCAAI预计2026年10月毕业。" },
+  "contact-linkedin": { en: "in LinkedIn Profile →", zh: "in 领英主页 →" },
+
+  "footer": { en: "© 2026 Yuanyuan (Yolanda) Huang &nbsp;·&nbsp; Built for humans, powered by curiosity", zh: "© 2026 黄媛媛（Yolanda）&nbsp;·&nbsp; 因好奇心而生，为真实的人而做" },
+
+  "hdr1": { en: "① Funnel Diagnosis", zh: "① 漏斗诊断" },
+  "hdr2": { en: "② Retention Analysis", zh: "② 复购分析" },
+  "hdr3": { en: "③ Churn Segmentation", zh: "③ 流失分层" },
+  "hdr4": { en: "④ Intervention Design", zh: "④ 干预设计" },
+  "n1a-t": { en: "Total Views", zh: "全量浏览" },
+  "n1a-s1": { en: "3.02M users · View", zh: "302.2万 用户 · View" },
+  "n1b-t": { en: "Purchase Path Split", zh: "购买路径分叉" },
+  "n1b-s1": { en: "41.6% purchased without cart", zh: "41.6% 未经加购直接购买" },
+  "n1b-s2": { en: "144K users · Direct Purchase", zh: "14.4万人 · Direct Purchase" },
+  "n1note-t": { en: "Method", zh: "方法处理" },
+  "n1note-s1": { en: "pandas, chunksize = 500K rows", zh: "pandas chunksize=50万分块处理" },
+  "n1note-s2": { en: "40M+ events, stable memory", zh: "4000万+行为事件，内存稳定" },
+  "lbl-347k": { en: "347K buyers", zh: "34.7万购买用户" },
+  "n2-t": { en: "Monthly Repurchase 26.3%", zh: "月度复购率 26.3%" },
+  "n2-s1": { en: "Oct 347K → Nov 442K", zh: "10月34.7万 → 11月44.2万" },
+  "n2-s2": { en: "91K repeat buyers", zh: "复购9.1万人" },
+  "n2note-t": { en: "Design", zh: "分析设计" },
+  "n2note-s1": { en: "Repeat buyers as control group,", zh: "以复购用户为对照组，" },
+  "n2note-s2": { en: "not churned group in isolation", zh: "而非孤立描述流失群体" },
+  "lbl-737": { en: "73.7% not repurchased", zh: "73.7%未复购" },
+  "n3root-t": { en: "Churned Users 256K", zh: "流失用户 25.6万" },
+  "n3root-s1": { en: "73.7% no repurchase (vs. control)", zh: "73.7% 未复购（vs 复购对照组）" },
+  "n3root-s2": { en: "255,832 users", zh: "255,832人" },
+  "n3a-t": { en: "Fully Silent", zh: "完全沉默" },
+  "n3a-s1": { en: "52.1% · 133K users", zh: "52.1% · 13.3万人" },
+  "n3b-t": { en: "Repeat-viewed, Unconverted", zh: "反复浏览未转化" },
+  "n3b-s1": { en: "76.1%* · 93K users", zh: "76.1%* · 9.3万人" },
+  "n3c-t": { en: "Cart, Unpaid", zh: "已加购未支付" },
+  "n3c-s1": { en: "28.9%* · 35K users", zh: "28.9%* · 3.5万人" },
+  "footnote": { en: "*% of active-but-unconverted users (123K)", zh: "*占活跃未转化用户（12.3万人）比例" },
+  "lbl-521": { en: "52.1%", zh: "52.1%" },
+  "lbl-479": { en: "47.9% active, unconverted · 123K", zh: "47.9% 活跃未转化 · 12.3万人" },
+  "lbl-761": { en: "76.1%*", zh: "76.1%*" },
+  "lbl-289": { en: "28.9%*", zh: "28.9%*" },
+  "n4a-t": { en: "Awaken Tier", zh: "唤醒层" },
+  "n4a-s1": { en: "Off-site: push / SMS / email", zh: "站外触达：push/短信/邮件" },
+  "n4a-s2": { en: "+ activation coupon", zh: "+ 唤醒型激励券" },
+  "n4b-t": { en: "Convert Tier", zh: "促成层" },
+  "n4b-s1": { en: "On-site real-time prompt:", zh: "站内实时提示：" },
+  "n4b-s2": { en: "low stock / flash offer", zh: "库存紧张 / 限时优惠" },
+  "n4c-t": { en: "Recover Tier", zh: "挽回层" },
+  "n4c-s1": { en: "24h reminder → 72h discount", zh: "24h提醒 → 72h限时折扣" },
+  "n4c-s2": { en: "(tiered trigger)", zh: "（分级触发）" },
+  "diagram-caption": { en: "Diagram: from funnel diagnosis (41.6% purchased without cart) to retention analysis (26.3% monthly repurchase), to a 3-tier churn segmentation mapped to differentiated interventions. *Repeat-view/cart shares are computed against \"active but unconverted users\" (123K).", zh: "图示：从漏斗诊断（发现41.6%用户未经加购直接购买）到复购分析（月度复购率26.3%），再到流失用户三层分群，最终映射为差异化的干预动作设计。*反复浏览/已加购比例以\"活跃未转化用户\"（12.3万人）为分母计算。" },
+  "diagram-aria": { en: "Full analysis architecture from funnel diagnosis to 3-tier intervention design: churned users are split by behavior into fully silent, repeat-viewed unconverted, and cart-unpaid, each mapped to an awaken, convert, or recover tier", zh: "从漏斗诊断到三层干预设计的完整分析架构：流失用户按行为特征分为完全沉默、反复浏览未转化、已加购未支付三类，分别映射唤醒层、促成层、挽回层三种干预动作" }
+};
+
+function applyLang(lang) {
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (I18N[key]) el.textContent = I18N[key][lang];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (I18N[key]) el.innerHTML = I18N[key][lang];
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-aria');
+    if (I18N[key]) el.setAttribute('aria-label', I18N[key][lang]);
+  });
+  var toggle = document.getElementById('lang-toggle');
+  if (toggle) toggle.textContent = lang === 'zh' ? 'EN' : '中文';
+  try { localStorage.setItem('portfolio-lang', lang); } catch (e) {}
+}
+
+(function initLang() {
+  var saved = 'en';
+  try { saved = localStorage.getItem('portfolio-lang') || 'en'; } catch (e) {}
+  applyLang(saved);
+  var toggle = document.getElementById('lang-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('lang') === 'zh-CN' ? 'zh' : 'en';
+      applyLang(current === 'zh' ? 'en' : 'zh');
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
