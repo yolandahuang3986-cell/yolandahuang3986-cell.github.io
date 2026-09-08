@@ -197,6 +197,11 @@ section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
   border-bottom: 1px solid var(--border);
 }
 .proj-group-title .cn { color: var(--ink); font-size: 15px; letter-spacing: 0.02em; text-transform: none; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+.proj-group-note {
+  font-size: 13px; line-height: 1.6; color: var(--ink-mute);
+  font-style: italic; margin: -8px 0 20px;
+  max-width: 680px;
+}
 .projects-grid { display: grid; gap: 20px; }
 
 .project-card {
@@ -270,6 +275,17 @@ section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
 }
 
 .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.proj-demo { margin-top: 18px; }
+.proj-demo video {
+  width: 100%; display: block;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #000;
+}
+.demo-credit {
+  font-size: 11px; color: var(--ink-mute);
+  margin-top: 8px;
+}
 .stack-item {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; color: var(--ink-mute);
@@ -475,7 +491,7 @@ footer {
       Yuanyuan<br><em>(Yolanda)</em><br>Huang
     </h1>
     <p class="hero-desc fade-up fade-up-2" data-i18n="hero-desc">
-      AI Operations & Solutions specialist bridging business strategy and AI deployment — with 8+ years delivering intelligent systems in FinTech and consulting across China and Southeast Asia.
+      AI Operations & Solutions specialist bridging business strategy and AI deployment — with 8+ years delivering intelligent systems in FinTech and consulting in China, now based in Singapore pursuing an Applied AI master's at NTU.
     </p>
     <div class="hero-tags fade-up fade-up-3">
       <span class="tag" data-i18n="tag-1">AI Product</span>
@@ -538,15 +554,15 @@ footer {
           </div>
           <div class="proj-title" data-i18n="ops1-title">Intelligent QC & Flow Operations System</div>
           <p class="proj-desc" data-i18n="ops1-desc">
-            Led AI-driven overhaul of customer service quality control and escalation workflows at Ant Group (Alipay) — serving 30K+ monthly cases. Replaced manual random sampling with intent-driven intelligent full-inspection; built a real-time customer downgrade strategy system from zero.
+            Owned end-to-end optimization of the complaint-escalation process at Ant Group (Alipay), including building the real-time customer downgrade strategy system from zero to one. Was the first on the team to run the full intelligent QC closed loop — from atomic rubric design through detection to consumption — into production, covering 30K+ monthly cases.
           </p>
           <div class="proj-highlights">
             <span class="highlight" data-i18n="ops1-h1">Prompt-engineered QC Pipeline</span>
             <span class="highlight" data-i18n="ops1-h2">Atomic-level Capability Decomposition</span>
             <span class="highlight" data-i18n="ops1-h3">Real-time Risk Stratification</span>
             <span class="highlight result" data-i18n="ops1-h4">↓ 90pt Abnormal Interference</span>
-            <span class="highlight result" data-i18n="ops1-h5">CSAT +2%</span>
-            <span class="highlight result" data-i18n="ops1-h6">50%+ Cost Reduction</span>
+            <span class="highlight result" data-i18n="ops1-h5">Pilot-channel CSAT +2pt</span>
+            <span class="highlight result" data-i18n="ops1-h6">50%+ Cost Cut via Outsourcing</span>
           </div>
           <div class="proj-stack">
             <span class="stack-item">NLP Rules</span>
@@ -617,6 +633,7 @@ footer {
   <!-- ═══ 数分 · DATA ANALYSIS ═══ -->
   <div class="proj-group">
     <div class="proj-group-title"><span class="cn">数分</span><span>Data Analysis</span></div>
+    <p class="proj-group-note" data-i18n="data-group-note">Note: Ant Group's internal risk/operations data can't be shared publicly, so the two case studies below use a public e-commerce dataset and a coursework churn model instead — to demonstrate the same analytical methodology (funnel diagnosis, retention analysis, churn segmentation) end-to-end on data that's safe to show.</p>
     <div class="projects-grid">
 
       <!-- Growth Funnel Case Study -->
@@ -818,19 +835,19 @@ footer {
           <div class="proj-meta">
             <span class="proj-badge badge-kyc" data-i18n="prod1-badge1">FinTech · Compliance</span>
             <span class="proj-badge badge-ai" data-i18n="prod1-badge2">Agentic AI</span>
-            <span class="proj-badge badge-ai" data-i18n="prod1-badge3">NTU Coursework</span>
+            <span class="proj-badge badge-ai" data-i18n="prod1-badge3">Faculty-mentored · NTU</span>
           </div>
-          <div class="proj-title" data-i18n="prod1-title">KYC Compliance Agentic Pipeline</div>
+          <div class="proj-title" data-i18n="prod1-title">Verra — Graph-Driven Agentic KYC Decision System</div>
           <p class="proj-desc" data-i18n="prod1-desc">
-            Designed and built a production-grade 3-agent identity verification system for financial customer onboarding. The pipeline automates compliance decisions across PASS / REVIEW / REJECT with a full explainable audit trail — validated against global regulatory frameworks (CN, SG, EU, US).
+            Contributed product solution design and delivery for Verra, a graph-driven agentic KYC decision system developed under the guidance of Dr. Eric Tham (Nanyang Business School, NTU). Covers sanctions-list hits, name-format variant matching, cross-entity relationship risk, and decision-regression detection, with a full explainable audit trail.
           </p>
           <div class="proj-highlights">
             <span class="highlight" data-i18n="prod1-h1">Extraction Agent</span>
             <span class="highlight" data-i18n="prod1-h2">MRZ Integrity Check</span>
-            <span class="highlight" data-i18n="prod1-h3">Fuzzy Name Matching</span>
-            <span class="highlight" data-i18n="prod1-h4">Adverse Media Screening</span>
-            <span class="highlight" data-i18n="prod1-h5">Weighted Risk Scoring</span>
-            <span class="highlight result" data-i18n="prod1-h6">3 Scenarios Validated</span>
+            <span class="highlight" data-i18n="prod1-h3">Name-Variant Fuzzy Matching</span>
+            <span class="highlight" data-i18n="prod1-h4">Sanctions-List Screening</span>
+            <span class="highlight" data-i18n="prod1-h5">Cross-Entity Graph Risk</span>
+            <span class="highlight result" data-i18n="prod1-h6">Decision-Regression Detection</span>
             <span class="highlight result" data-i18n="prod1-h7">HITL Decision Gate</span>
           </div>
           <div class="proj-stack">
@@ -840,9 +857,15 @@ footer {
             <span class="stack-item">MRZ Parser</span>
             <span class="stack-item">Fuzzy Matching</span>
           </div>
+          <div class="proj-demo">
+            <video controls preload="metadata">
+              <source src="assets/video/kyc-demo.mp4" type="video/mp4">
+            </video>
+            <div class="demo-credit" data-i18n="prod1-credit">Demo credit: Dr. Eric Tham, Nanyang Business School, NTU</div>
+          </div>
         </div>
         <div class="proj-aside">
-          <div class="proj-status status-live" data-i18n="prod1-status">Live Demo</div>
+          <div class="proj-status status-live" data-i18n="prod1-status">Demo Video</div>
           <div class="proj-metrics">
             <div class="metric">
               <div class="metric-val">3</div>
@@ -862,7 +885,6 @@ footer {
           <div class="proj-meta">
             <span class="proj-badge badge-ai" data-i18n="prod2-badge1">Multi-Agent</span>
             <span class="proj-badge badge-ec" data-i18n="prod2-badge2">E-commerce</span>
-            <span class="proj-badge badge-wip" data-i18n="prod2-badge3">In Progress</span>
           </div>
           <div class="proj-title" data-i18n="prod2-title">E-commerce CS Multi-Agent System</div>
           <p class="proj-desc" data-i18n="prod2-desc">
@@ -918,7 +940,7 @@ footer {
         <ul class="exp-bullets">
           <li data-i18n-html="exp1-b1"><strong>Built from zero</strong> a real-time customer downgrade strategy system — defined anomalous-user classification from behavioural signals, designed multi-tier service-permission routing rules; reduced abnormal-interference volume by <strong>90 percentage points</strong>.</li>
           <li data-i18n-html="exp1-b2"><strong>Defined QC business requirements</strong> for extreme customer-facing scenarios — decomposed inspection standards to atomic dimensions, translated into structured Prompt-engineered inspection pipeline enabling real-time coaching, alerts, and failsafe.</li>
-          <li data-i18n-html="exp1-b3"><strong>Replaced COPC random-sampling</strong> with intent-driven sampling; upgraded QC from call-level to event-level granularity — CSAT +2%, service-risk spillover significantly reduced.</li>
+          <li data-i18n-html="exp1-b3"><strong>Replaced COPC random-sampling</strong> with intent-driven sampling; upgraded QC from call-level to event-level granularity — pilot-channel CSAT +2pt, service-risk spillover significantly reduced.</li>
           <li data-i18n-html="exp1-b4">Built 15-person outsourced QC team; restructured 30-person in-house team — maintained cross-LOB quality while achieving <strong>50%+ headcount cost reduction</strong>.</li>
         </ul>
       </div>
@@ -1071,7 +1093,7 @@ const I18N = {
   "nav-contact": { en: "Contact", zh: "联系" },
 
   "hero-eyebrow": { en: "NTU MCAAI · Singapore", zh: "南洋理工大学应用人工智能硕士 · 新加坡" },
-  "hero-desc": { en: "AI Operations & Solutions specialist bridging business strategy and AI deployment — with 8+ years delivering intelligent systems in FinTech and consulting across China and Southeast Asia.", zh: "AI运营与解决方案专家，连接商业战略与AI落地——拥有8年以上在金融科技与咨询领域交付智能系统的经验，工作横跨中国与东南亚。" },
+  "hero-desc": { en: "AI Operations & Solutions specialist bridging business strategy and AI deployment — with 8+ years delivering intelligent systems in FinTech and consulting in China, now based in Singapore pursuing an Applied AI master's at NTU.", zh: "AI运营与解决方案专家，连接商业战略与AI落地——拥有8年以上在中国金融科技与咨询领域交付智能系统的经验，现于新加坡南洋理工大学攻读应用人工智能硕士。" },
   "tag-1": { en: "AI Product", zh: "AI产品" },
   "tag-2": { en: "AI Solutions", zh: "AI解决方案" },
   "tag-3": { en: "FinTech", zh: "金融科技" },
@@ -1095,13 +1117,13 @@ const I18N = {
   "ops1-badge1": { en: "AI Operations", zh: "AI运营" },
   "ops1-badge2": { en: "FinTech · Ant Group", zh: "金融科技 · 蚂蚁集团" },
   "ops1-title": { en: "Intelligent QC & Flow Operations System", zh: "智能质检与流程运营系统" },
-  "ops1-desc": { en: "Led AI-driven overhaul of customer service quality control and escalation workflows at Ant Group (Alipay) — serving 30K+ monthly cases. Replaced manual random sampling with intent-driven intelligent full-inspection; built a real-time customer downgrade strategy system from zero.", zh: "主导蚂蚁集团（支付宝）客服质检与升级流程的AI驱动改造，覆盖每月3万+案例。用意图驱动的智能全检替代人工抽检，从0到1搭建实时客户降级策略系统。" },
+  "ops1-desc": { en: "Owned end-to-end optimization of the complaint-escalation process at Ant Group (Alipay), including building the real-time customer downgrade strategy system from zero to one. Was the first on the team to run the full intelligent QC closed loop — from atomic rubric design through detection to consumption — into production, covering 30K+ monthly cases.", zh: "负责蚂蚁集团（支付宝）升投（投诉升级）流程的端到端优化，从0到1搭建实时客户降级策略系统；并在团队中率先将智能质检从质检点设计、检测到结果消费的完整闭环跑通并落地上线，覆盖每月3万+案例。" },
   "ops1-h1": { en: "Prompt-engineered QC Pipeline", zh: "Prompt工程化质检流水线" },
   "ops1-h2": { en: "Atomic-level Capability Decomposition", zh: "原子级能力拆解" },
   "ops1-h3": { en: "Real-time Risk Stratification", zh: "实时风险分层" },
   "ops1-h4": { en: "↓ 90pt Abnormal Interference", zh: "异常干扰↓90个百分点" },
-  "ops1-h5": { en: "CSAT +2%", zh: "满意度+2%" },
-  "ops1-h6": { en: "50%+ Cost Reduction", zh: "成本降低50%+" },
+  "ops1-h5": { en: "Pilot-channel CSAT +2pt", zh: "试点渠道满意度+2pt" },
+  "ops1-h6": { en: "50%+ Cost Cut via Outsourcing", zh: "外包模式成本降低50%+" },
   "ops1-status": { en: "Delivered", zh: "已交付" },
   "ops1-m1": { en: "Risk reduction", zh: "风险降低" },
   "ops1-m2": { en: "Cost saved", zh: "节省成本" },
@@ -1120,6 +1142,7 @@ const I18N = {
   "ops2-m1": { en: "Agents", zh: "代理人" },
   "ops2-m2": { en: "Adoption", zh: "采用率" },
 
+  "data-group-note": { en: "Note: Ant Group's internal risk/operations data can't be shared publicly, so the two case studies below use a public e-commerce dataset and a coursework churn model instead — to demonstrate the same analytical methodology (funnel diagnosis, retention analysis, churn segmentation) end-to-end on data that's safe to show.", zh: "说明：由于蚂蚁集团内部的风险运营数据不便公开披露，以下两个案例改用公开电商数据集和课程流失预测模型，来完整展示同一套分析方法论（漏斗诊断、复购分析、流失分层）的应用过程。" },
   "data1-badge1": { en: "Growth Analytics", zh: "增长分析" },
   "data1-badge2": { en: "Self-Directed · Public Dataset", zh: "自主项目 · 公开数据集" },
   "data1-title": { en: "Growth Funnel Diagnosis & Retention Segmentation", zh: "增长漏斗诊断与留存分层" },
@@ -1148,23 +1171,23 @@ const I18N = {
 
   "prod1-badge1": { en: "FinTech · Compliance", zh: "金融科技 · 合规" },
   "prod1-badge2": { en: "Agentic AI", zh: "智能体AI" },
-  "prod1-badge3": { en: "NTU Coursework", zh: "NTU课程项目" },
-  "prod1-title": { en: "KYC Compliance Agentic Pipeline", zh: "KYC合规智能体流水线" },
-  "prod1-desc": { en: "Designed and built a production-grade 3-agent identity verification system for financial customer onboarding. The pipeline automates compliance decisions across PASS / REVIEW / REJECT with a full explainable audit trail — validated against global regulatory frameworks (CN, SG, EU, US).", zh: "为金融客户开户设计并搭建了一套生产级三智能体身份验证系统。该流水线自动完成PASS/REVIEW/REJECT合规决策，并提供完整的可解释审计轨迹——已针对中国、新加坡、欧盟、美国等多地监管框架验证。" },
+  "prod1-badge3": { en: "Faculty-mentored · NTU", zh: "NTU教授指导项目" },
+  "prod1-title": { en: "Verra — Graph-Driven Agentic KYC Decision System", zh: "Verra——图谱驱动的Agentic KYC决策系统" },
+  "prod1-desc": { en: "Contributed product solution design and delivery for Verra, a graph-driven agentic KYC decision system developed under the guidance of Dr. Eric Tham (Nanyang Business School, NTU). Covers sanctions-list hits, name-format variant matching, cross-entity relationship risk, and decision-regression detection, with a full explainable audit trail.", zh: "参与Eric Tham博士（南洋理工大学南洋商学院）主导的Verra项目——一个图谱驱动的Agentic KYC决策系统，负责产品方案设计与交付。围绕制裁名单命中、姓名格式变体、跨实体关联风险、决策回归检测等场景展开，具备完整的可解释审计轨迹。" },
   "prod1-h1": { en: "Extraction Agent", zh: "信息提取智能体" },
   "prod1-h2": { en: "MRZ Integrity Check", zh: "MRZ完整性校验" },
-  "prod1-h3": { en: "Fuzzy Name Matching", zh: "姓名模糊匹配" },
-  "prod1-h4": { en: "Adverse Media Screening", zh: "负面媒体筛查" },
-  "prod1-h5": { en: "Weighted Risk Scoring", zh: "加权风险评分" },
-  "prod1-h6": { en: "3 Scenarios Validated", zh: "验证3类场景" },
+  "prod1-h3": { en: "Name-Variant Fuzzy Matching", zh: "姓名格式变体模糊匹配" },
+  "prod1-h4": { en: "Sanctions-List Screening", zh: "制裁名单命中筛查" },
+  "prod1-h5": { en: "Cross-Entity Graph Risk", zh: "跨实体关联风险图谱" },
+  "prod1-h6": { en: "Decision-Regression Detection", zh: "决策回归检测" },
   "prod1-h7": { en: "HITL Decision Gate", zh: "人机协同决策关卡" },
-  "prod1-status": { en: "Live Demo", zh: "在线演示" },
+  "prod1-status": { en: "Demo Video", zh: "演示视频" },
+  "prod1-credit": { en: "Demo credit: Dr. Eric Tham, Nanyang Business School, NTU", zh: "演示视频致谢：南洋理工大学南洋商学院 Eric Tham 博士" },
   "prod1-m1": { en: "Agent pipeline", zh: "智能体流水线" },
   "prod1-m2": { en: "Jurisdictions", zh: "覆盖地区" },
 
   "prod2-badge1": { en: "Multi-Agent", zh: "多智能体" },
   "prod2-badge2": { en: "E-commerce", zh: "电商" },
-  "prod2-badge3": { en: "In Progress", zh: "进行中" },
   "prod2-title": { en: "E-commerce CS Multi-Agent System", zh: "电商客服多智能体系统" },
   "prod2-desc": { en: "Built a LangGraph-powered multi-agent customer service system for e-commerce. An intent-classification Orchestrator dynamically routes incoming queries to four specialist sub-agents — order, logistics, payment, and complaint — covering the full customer service workflow.", zh: "基于LangGraph搭建电商多智能体客服系统。一个意图分类编排器（Orchestrator）动态将来访问题路由至四个专项子智能体——订单、物流、支付与投诉——覆盖完整客服工作流。" },
   "prod2-h1": { en: "Intent-driven Orchestrator", zh: "意图驱动编排器" },
@@ -1183,7 +1206,7 @@ const I18N = {
   "exp1-role": { en: "Process & Quality Operations Specialist · AI Force Division", zh: "流程与质量运营专家 · AI Force事业部" },
   "exp1-b1": { en: "<strong>Built from zero</strong> a real-time customer downgrade strategy system — defined anomalous-user classification from behavioural signals, designed multi-tier service-permission routing rules; reduced abnormal-interference volume by <strong>90 percentage points</strong>.", zh: "<strong>从0到1搭建</strong>实时客户降级策略系统——基于行为信号定义异常用户分类，设计多层级服务权限路由规则；异常干扰量下降<strong>90个百分点</strong>。" },
   "exp1-b2": { en: "<strong>Defined QC business requirements</strong> for extreme customer-facing scenarios — decomposed inspection standards to atomic dimensions, translated into structured Prompt-engineered inspection pipeline enabling real-time coaching, alerts, and failsafe.", zh: "<strong>为极端客户场景定义质检业务需求</strong>——将质检标准拆解至原子维度，转化为结构化的Prompt工程化质检流水线，支撑实时指导、预警与兜底机制。" },
-  "exp1-b3": { en: "<strong>Replaced COPC random-sampling</strong> with intent-driven sampling; upgraded QC from call-level to event-level granularity — CSAT +2%, service-risk spillover significantly reduced.", zh: "<strong>以意图驱动抽检替代COPC随机抽检</strong>，将质检颗粒度从通话级升级到事件级——客户满意度+2%，服务风险外溢显著降低。" },
+  "exp1-b3": { en: "<strong>Replaced COPC random-sampling</strong> with intent-driven sampling; upgraded QC from call-level to event-level granularity — pilot-channel CSAT +2pt, service-risk spillover significantly reduced.", zh: "<strong>以意图驱动抽检替代COPC随机抽检</strong>，将质检颗粒度从通话级升级到事件级——试点渠道客户满意度+2pt，服务风险外溢显著降低。" },
   "exp1-b4": { en: "Built 15-person outsourced QC team; restructured 30-person in-house team — maintained cross-LOB quality while achieving <strong>50%+ headcount cost reduction</strong>.", zh: "组建15人外包质检团队，重组30人内部团队——在保障跨业务线质量的同时实现<strong>人力成本降低50%+</strong>。" },
 
   "exp2-period": { en: "2020.04 — 2021.11<br>Shanghai / Shenzhen", zh: "2020.04 — 2021.11<br>上海 / 深圳" },
